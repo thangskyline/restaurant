@@ -931,7 +931,6 @@
     <Content Include="Views\Reservation\Reservation.cshtml" />
     <Content Include="Views\Shared\Report.cshtml" />
     <Content Include="Views\Summary\TableRuler.cshtml" />
-    <Content Include="Views\Summary\TimeRuler.cshtml" />
     <Content Include="Views\Summary\Booking.cshtml" />
     <Content Include="Views\Summary\BizHour.cshtml" />
     <Content Include="Views\Menu\OldEditor0.cshtml" />
