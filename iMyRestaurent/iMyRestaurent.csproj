@@ -892,6 +892,9 @@
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
     <None Include="Service References\iRstSrv\configuration911.svcinfo" />
+    <Content Include="Views\Summary\TimeRuler.cshtml">
+      <SubType>Code</SubType>
+    </Content>
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
