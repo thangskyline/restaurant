@@ -1,0 +1,25 @@
+﻿@model System.Web.Mvc.HandleErrorInfo
+@{
+    ViewBag.Title = "Error";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h2 style="text-align: center; padding: 10px 0 10px 0;">
+    Sorry, an error occurred while processing your request. @*Please click at @Html.ActionLink("here", "Login", "Account")
+    to login again.*@
+</h2>
+@*<div class="center-box" style="width: 900px;">
+    <a href="#" id="error-label">View/hide error stack trace (during development phase only)</a>
+    <div style="padding-top: 20px;" class="hidden" id="error">@Model.Exception.ToString()
+    </div>
+</div>
+@section script 
+{
+    <script type="text/javascript">
+        $(function () {
+            $("#error-label").click(function () {
+                $("#error").toggleClass("hidden");
+            });
+        });
+    </script>
+}
+*@

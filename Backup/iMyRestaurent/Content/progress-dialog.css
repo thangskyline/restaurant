@@ -1,0 +1,35 @@
+﻿#progress-dialog
+{
+    min-width: 120px;
+    height: 60px;
+    background-color: Black;
+    text-align: center;
+    opacity: 0.8;
+    border-radius: 20px;
+    -moz-border-radius: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    display: table;
+    padding: 10px 20px 0 20px;
+}
+#progress-dialog-text
+{
+    display: table-row;
+    color: White;
+    white-space: nowrap;
+}
+#progress-dialog-image
+{
+    margin: 10px auto 10px auto;
+}
+#dialog-mask
+{
+    top: 0;
+    left: 0;
+    position: fixed;
+    background-color: transparent;
+    z-index: 99999;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}

@@ -1,0 +1,988 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{B69D8620-5A5C-490D-A651-293411B619A2}</ProjectGuid>
+    <ProjectTypeGuids>{E53F8FEA-EAE0-44A6-8774-FFD645390401};{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>iMyRestaurent</RootNamespace>
+    <AssemblyName>iMyRestaurant</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <UseIISExpress>false</UseIISExpress>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.4.1.10331.0\lib\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="log4net">
+      <HintPath>..\packages\Log4net\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.ServiceModel.Web" />
+    <Reference Include="System.Web.Mvc, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Web.WebPages, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Web.Helpers, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Controllers\DemoController.cs" />
+    <Compile Include="Controllers\HolidayController.cs" />
+    <Compile Include="Controllers\MenuController.cs" />
+    <Compile Include="Controllers\ReportController.cs" />
+    <Compile Include="Models\GroupModels.cs" />
+    <Compile Include="Models\Holiday.cs" />
+    <Compile Include="Models\ItemModels.cs" />
+    <Compile Include="Models\MenuModels.cs" />
+    <Compile Include="Models\OptionModels.cs" />
+    <Compile Include="Models\ReportModels.cs" />
+    <Compile Include="Models\SectionModels.cs" />
+    <Compile Include="Service References\iRstSrv\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Shared\CustomAuth.cs" />
+    <Compile Include="Shared\ErrorHandle.cs" />
+    <Compile Include="Shared\NoCache.cs" />
+    <Compile Include="Shared\Utils.cs" />
+    <Content Include="Content\biz-hours.css" />
+    <Content Include="Content\booking-detail.css" />
+    <Content Include="Content\holiday-setting.css" />
+    <Content Include="Content\menu.css" />
+    <Content Include="Content\i-my-menu-v2.css" />
+    <Content Include="Content\i-my-menu-v3.css" />
+    <Content Include="Content\i-my-menu.css" />
+    <Content Include="Content\images\about-iMR-btn.png" />
+    <Content Include="Content\images\add-btn.png" />
+    <Content Include="Content\images\btn-done-hover.png" />
+    <Content Include="Content\images\btn-done-onclick.png" />
+    <Content Include="Content\images\cancel-btn-hover.png" />
+    <Content Include="Content\images\cancel-btn-onclick.png" />
+    <Content Include="Content\images\cancel-btn.png" />
+    <Content Include="Content\images\change-btn.png" />
+    <Content Include="Content\images\change-pw-btn.png" />
+    <Content Include="Content\images\continue-btn-hover.png" />
+    <Content Include="Content\images\continue-btn-onclick.png" />
+    <Content Include="Content\images\continue-btn.png" />
+    <Content Include="Content\images\create-bizhr-addmenu-hover.png" />
+    <Content Include="Content\images\create-bizhr-addmenu-onclick.png" />
+    <Content Include="Content\images\create-bizhr-hideshowbtn-hover.png" />
+    <Content Include="Content\images\create-bizhr-hideshowbtn-onclick.png" />
+    <Content Include="Content\images\create-bizhrs-discardbtn-hover.png" />
+    <Content Include="Content\images\create-bizhrs-discardbtn-onclick.png" />
+    <Content Include="Content\images\create-bizhrs-donebtn-hover.png" />
+    <Content Include="Content\images\create-bizhrs-donebtn-onclick.png" />
+    <Content Include="Content\images\create-bizhrs-savebtn-hover.png" />
+    <Content Include="Content\images\create-bizhrs-savebtn-onclick.png" />
+    <Content Include="Content\images\create-flrplan-createbtn-hover.png" />
+    <Content Include="Content\images\create-flrplan-createbtn-onclick.png" />
+    <Content Include="Content\images\create-flrplan-resetbtn-hover.png" />
+    <Content Include="Content\images\create-flrplan-resetbtn-onclick.png" />
+    <Content Include="Content\images\create-loc-addmenu-btn.png" />
+    <Content Include="Content\images\create-loc-trash-icon.png" />
+    <Content Include="Content\images\create-new-loc-btn.png" />
+    <Content Include="Content\images\back-btn-hover.png" />
+    <Content Include="Content\images\back-btn-onclick.png" />
+    <Content Include="Content\images\create-newloc-addbtn-hover.png" />
+    <Content Include="Content\images\create-newloc-addbtn-onclick.png" />
+    <Content Include="Content\images\create-reservation-menu-bg-s.png" />
+    <Content Include="Content\images\create-reservation-timeline.png" />
+    <Content Include="Content\images\create-specialday-addbtn-hover.png" />
+    <Content Include="Content\images\create-specialday-addbtn-onclick.png" />
+    <Content Include="Content\images\create-specialday-deletebtn-hover.png" />
+    <Content Include="Content\images\create-specialday-deletebtn-onclick.png" />
+    <Content Include="Content\images\createflrplan-back-btn.png" />
+    <Content Include="Content\buttons.css" />
+    <Content Include="Content\images\demo-btn-hover.png" />
+    <Content Include="Content\images\demo-btn-onclick.png" />
+    <Content Include="Content\images\display-password-btn-hover.png" />
+    <Content Include="Content\images\display-password-btn-onclick.png" />
+    <Content Include="Content\images\display-password-btn.png" />
+    <Content Include="Content\images\down-arrow.png" />
+    <Content Include="Content\images\edit-bizhours-close-hover.png" />
+    <Content Include="Content\images\edit-bizhours-close-onclick.png" />
+    <Content Include="Content\images\edit-bizhours-close.png" />
+    <Content Include="Content\images\edit-bizhours-copy-hover.png" />
+    <Content Include="Content\images\edit-bizhours-copy-onclick.png" />
+    <Content Include="Content\images\edit-bizhours-copy.png" />
+    <Content Include="Content\images\edit-bizhours-imm-hover.png" />
+    <Content Include="Content\images\edit-bizhours-imm-onclick.png" />
+    <Content Include="Content\images\edit-bizhours-imm.png" />
+    <Content Include="Content\images\edit-bizhours-open-hover.png" />
+    <Content Include="Content\images\edit-bizhours-open-onclick.png" />
+    <Content Include="Content\images\edit-bizhours-open.png" />
+    <Content Include="Content\images\edit-flrplan-btn-hover.png" />
+    <Content Include="Content\images\edit-flrplan-btn-onclick.png" />
+    <Content Include="Content\images\edit-flrplan-btn.png" />
+    <Content Include="Content\images\edit-loc-bizhrs-btn.png" />
+    <Content Include="Content\images\edit-loc-btn.png" />
+    <Content Include="Content\images\edit-rest-profile-btn.png" />
+    <Content Include="Content\images\filter.png" />
+    <Content Include="Content\images\holiday-button-bg-small-hover.png" />
+    <Content Include="Content\images\holiday-button-bg-small-onclick.png" />
+    <Content Include="Content\images\holiday-button-bg-small.png" />
+    <Content Include="Content\images\iMT-findtable-timeline.png" />
+    <Content Include="Content\images\iMyMenu-Upload-Preview-addbtn.png" />
+    <Content Include="Content\images\iMyMenu-Upload-Preview-cancelbtn-hover.png" />
+    <Content Include="Content\images\iMyMenu-Upload-Preview-cancelbtn-onclick.png" />
+    <Content Include="Content\images\iMyMenu-Upload-Preview-cancelbtn.png" />
+    <Content Include="Content\images\iMyMenu-Upload-Preview-changebtn-hover.png" />
+    <Content Include="Content\images\iMyMenu-Upload-Preview-changebtn-onclick.png" />
+    <Content Include="Content\images\iMyMenu-Upload-Preview-changebtn.png" />
+    <Content Include="Content\images\iMyMenu-Upload-Preview-copybtn-hover.png" />
+    <Content Include="Content\images\iMyMenu-Upload-Preview-copybtn-onclick.png" />
+    <Content Include="Content\images\iMyMenu-Upload-Preview-copybtn.png" />
+    <Content Include="Content\images\iMyMenu-Upload-Preview-deletebtn-hover.png" />
+    <Content Include="Content\images\iMyMenu-Upload-Preview-deletebtn-onclick.png" />
+    <Content Include="Content\images\iMyMenu-Upload-Preview-deletebtn.png" />
+    <Content Include="Content\images\iMyMenu-Upload-Preview-searchbtn-hover.png" />
+    <Content Include="Content\images\iMyMenu-Upload-Preview-searchbtn-onclick.png" />
+    <Content Include="Content\images\iMyMenu-Upload-Preview-searchbtn.png" />
+    <Content Include="Content\images\iMyMenu-Upload-Preview-uploadbtn-hover.png" />
+    <Content Include="Content\images\iMyMenu-Upload-Preview-uploadbtn-onclick.png" />
+    <Content Include="Content\images\iMyMenu-Upload-Preview-uploadbtn.png" />
+    <Content Include="Content\images\imytable-icon-off.png" />
+    <Content Include="Content\images\imytable-icon-on.png" />
+    <Content Include="Content\images\infomessage-box2.png" />
+    <Content Include="Content\images\infomessage-no-btn.png" />
+    <Content Include="Content\images\infomessage-no-hover.png" />
+    <Content Include="Content\images\infomessage-no-onclick.png" />
+    <Content Include="Content\images\infomessage-ok-btn.png" />
+    <Content Include="Content\images\infomessage-ok-hover.png" />
+    <Content Include="Content\images\infomessage-ok-onclick.png" />
+    <Content Include="Content\images\infomessage-yes-btn.png" />
+    <Content Include="Content\images\infomessage-yes-hover.png" />
+    <Content Include="Content\images\infomessage-yes-onclick.png" />
+    <Content Include="Content\images\landing-forgot-btn-hover.png" />
+    <Content Include="Content\images\landing-forgot-btn-onclick.png" />
+    <Content Include="Content\images\landing-login-btn-hover.png" />
+    <Content Include="Content\images\landing-login-btn-onclick.png" />
+    <Content Include="Content\images\landing-register-btn-hover.png" />
+    <Content Include="Content\images\landing-register-btn-onclick.png" />
+    <Content Include="Content\images\loading.gif" />
+    <Content Include="Content\images\MenuEditor\add-icon.png" />
+    <Content Include="Content\images\MenuEditor\bg.jpg" />
+    <Content Include="Content\images\MenuEditor\clear-btn.png" />
+    <Content Include="Content\images\MenuEditor\del-icon.png" />
+    <Content Include="Content\images\MenuEditor\del.png" />
+    <Content Include="Content\images\MenuEditor\dot.png" />
+    <Content Include="Content\images\MenuEditor\down.png" />
+    <Content Include="Content\images\MenuEditor\logo.png" />
+    <Content Include="Content\images\MenuEditor\menu-mapping-hover.png" />
+    <Content Include="Content\images\MenuEditor\menu-mapping-press.png" />
+    <Content Include="Content\images\MenuEditor\menu-mapping.png" />
+    <Content Include="Content\images\MenuEditor\refresh-btn.png" />
+    <Content Include="Content\images\MenuEditor\save-btn.png" />
+    <Content Include="Content\images\MenuEditor\save.png" />
+    <Content Include="Content\images\MenuEditor\searchicon.png" />
+    <Content Include="Content\images\MenuEditor\searchimage.png" />
+    <Content Include="Content\images\MenuEditor\slicedown.jpg" />
+    <Content Include="Content\images\MenuEditor\sliceup.jpg" />
+    <Content Include="Content\images\MenuEditor\slogan.png" />
+    <Content Include="Content\images\MenuEditor\up.png" />
+    <Content Include="Content\images\MenuEditor\upload-icon.png" />
+    <Content Include="Content\images\MenuEditor\uploadimg.png" />
+    <Content Include="Content\images\more-reservation-hover.png" />
+    <Content Include="Content\images\more-reservation-normal.png" />
+    <Content Include="Content\images\more-reservation-onclick.png" />
+    <Content Include="Content\images\next.png" />
+    <Content Include="Content\images\optionmenu-aboutiMR-hover.png" />
+    <Content Include="Content\images\optionmenu-aboutiMR-onclick.png" />
+    <Content Include="Content\images\optionmenu-changepw-hover.png" />
+    <Content Include="Content\images\optionmenu-changepw-onclick.png" />
+    <Content Include="Content\images\optionmenu-createnewloc-hover.png" />
+    <Content Include="Content\images\optionmenu-createnewloc-onclick.png" />
+    <Content Include="Content\images\optionmenu-editbizhrs-hover.png" />
+    <Content Include="Content\images\optionmenu-editbizhrs-onclick.png" />
+    <Content Include="Content\images\optionmenu-editflrplan-hover.png" />
+    <Content Include="Content\images\optionmenu-editflrplan-onclick.png" />
+    <Content Include="Content\images\optionmenu-editlocation-hover.png" />
+    <Content Include="Content\images\optionmenu-editlocation-onclick.png" />
+    <Content Include="Content\images\optionmenu-editrestprofile-hover.png" />
+    <Content Include="Content\images\optionmenu-editrestprofile-onclick.png" />
+    <Content Include="Content\images\optionmenu-iMyMenu-hover.png" />
+    <Content Include="Content\images\optionmenu-iMyMenu-onclick.png" />
+    <Content Include="Content\images\optionmenu-iMyMenu.png" />
+    <Content Include="Content\images\optionmenu-setiMyTable-btn.png" />
+    <Content Include="Content\images\optionmenu-setiMyTable-hover.png" />
+    <Content Include="Content\images\optionmenu-setiMyTable-onclick.png" />
+    <Content Include="Content\images\optionmenu-setiTable-btn.png" />
+    <Content Include="Content\images\optionmenu-setiTable-hover.png" />
+    <Content Include="Content\images\optionmenu-setiTable-onclick.png" />
+    <Content Include="Content\images\optionmenu-termscond-hover.png" />
+    <Content Include="Content\images\optionmenu-termscond-onclick.png" />
+    <Content Include="Content\images\optionmenu.png" />
+    <Content Include="Content\images\pdf.png" />
+    <Content Include="Content\images\people-image.png" />
+    <Content Include="Content\images\person-big.png" />
+    <Content Include="Content\images\prev.png" />
+    <Content Include="Content\images\Report\filter.png" />
+    <Content Include="Content\images\Report\icon-report.png" />
+    <Content Include="Content\images\reservation-icon-blank-blue.png" />
+    <Content Include="Content\images\reservedetail-blockbtn-hover.png" />
+    <Content Include="Content\images\reservedetail-blockbtn-onclick.png" />
+    <Content Include="Content\images\reservedetail-cancelbtn-hover.png" />
+    <Content Include="Content\images\reservedetail-cancelbtn-onclick.png" />
+    <Content Include="Content\images\reservedetail-changebtn-hover.png" />
+    <Content Include="Content\images\reservedetail-changebtn-onclick.png" />
+    <Content Include="Content\images\reservedetail-noshowbtn-hover.png" />
+    <Content Include="Content\images\reservedetail-noshowbtn-onclick.png" />
+    <Content Include="Content\images\reservedetail-reservehistorybtn-hover.png" />
+    <Content Include="Content\images\reservedetail-reservehistorybtn-onclick.png" />
+    <Content Include="Content\images\reservedetail-saveclosebtn-hover.png" />
+    <Content Include="Content\images\reservedetail-saveclosebtn-onclick.png" />
+    <Content Include="Content\images\restart-btn-mouse-hover.png" />
+    <Content Include="Content\images\restart-btn-normal-onclick.png" />
+    <Content Include="Content\images\restart-btn.png" />
+    <Content Include="Content\images\save-btn-hover.png" />
+    <Content Include="Content\images\save-btn-onclick.png" />
+    <Content Include="Content\images\save-btn.png" />
+    <Content Include="Content\images\save-layout-btn-hover.png" />
+    <Content Include="Content\images\save-layout-btn-onclick.png" />
+    <Content Include="Content\images\save-layout-btn.png" />
+    <Content Include="Content\images\search.png" />
+    <Content Include="Content\images\send-question-btn-hover.png" />
+    <Content Include="Content\images\send-question-btn-onclick.png" />
+    <Content Include="Content\images\send-question-btn.png" />
+    <Content Include="Content\images\setting.png" />
+    <Content Include="Content\images\Settings.jpg" />
+    <Content Include="Content\images\Settings.png" />
+    <Content Include="Content\images\summary-minus-btn.png" />
+    <Content Include="Content\images\summary-new-reservation-hover.png" />
+    <Content Include="Content\images\summary-new-reservation-onclick.png" />
+    <Content Include="Content\images\summary-options-btn-hover.png" />
+    <Content Include="Content\images\summary-options-btn-onclick.png" />
+    <Content Include="Content\images\summary-signout-btn-hover.png" />
+    <Content Include="Content\images\summary-signout-btn-onclick.png" />
+    <Content Include="Content\images\table-black.png" />
+    <Content Include="Content\images\table-blue-118x118.png" />
+    <Content Include="Content\images\table-blue-button.png" />
+    <Content Include="Content\images\table-button.png" />
+    <Content Include="Content\images\table-green.png" />
+    <Content Include="Content\images\table-orange-118x118.png" />
+    <Content Include="Content\images\table-red-118x118.png" />
+    <Content Include="Content\images\table-red-button.png" />
+    <Content Include="Content\images\table-size5-colour.png" />
+    <Content Include="Content\images\table-size5-dark.png" />
+    <Content Include="Content\images\term-cond-btn.png" />
+    <Content Include="Content\info-box.css" />
+    <Content Include="Content\menu-styles\style1\bg.jpg" />
+    <Content Include="Content\menu-styles\style1\line.jpg" />
+    <Content Include="Content\menu-styles\style1\line1.jpg" />
+    <Content Include="Content\menu-styles\style1\style.css" />
+    <Content Include="Content\menu-styles\style2\style.css" />
+    <Content Include="Content\menu-styles\style3\fonts\BebasNeue-webfont.svg" />
+    <Content Include="Content\menu-styles\style3\fonts\Dharma Type Font License.txt" />
+    <Content Include="Content\menu-styles\style3\style.css" />
+    <Content Include="Content\menunew.css" />
+    <Content Include="Content\menueditor-style.css" />
+    <Content Include="Content\mobiscroll\mobiscroll-2.0.1.custom.min.css" />
+    <Content Include="Content\mobiscroll\mobiscroll.android-ics-2.0.css" />
+    <Content Include="Content\mobiscroll\mobiscroll.core-2.0.1.css" />
+    <Content Include="Content\mobiscroll\mobiscroll.core-2.0.3.css" />
+    <Content Include="Content\mobiscroll\mobiscroll.ios-2.0.2.css" />
+    <Content Include="Content\mobiscroll\mobiscroll.ios-2.0.css" />
+    <Content Include="Content\popups.css" />
+    <Content Include="Content\profile.css" />
+    <Content Include="Content\progress-dialog.css" />
+    <Content Include="Content\report.css" />
+    <Content Include="Content\reservation.css" />
+    <Compile Include="Controllers\BusinessHoursController.cs" />
+    <Compile Include="Controllers\LayoutController.cs" />
+    <Compile Include="Controllers\LocationController.cs" />
+    <Compile Include="Controllers\ProfileController.cs" />
+    <Compile Include="Controllers\ReservationController.cs" />
+    <Compile Include="Controllers\AvailabilityController.cs" />
+    <Compile Include="Controllers\NumberingController.cs" />
+    <Compile Include="Models\BusinessHoursModels.cs" />
+    <Compile Include="Models\LayoutModels.cs" />
+    <Compile Include="Models\LocationModels.cs" />
+    <Compile Include="Models\ProfileModels.cs" />
+    <Compile Include="Models\ReservationModels.cs" />
+    <Compile Include="Models\AvailabilityModels.cs" />
+    <Compile Include="Models\SharedModels.cs" />
+    <Compile Include="Models\SummaryModels.cs" />
+    <Compile Include="Models\NumberingModels.cs" />
+    <Compile Include="Services\iRstSrvClient.cs" />
+    <Compile Include="Shared\Constants.cs" />
+    <Compile Include="Controllers\AboutController.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\SummaryController.cs" />
+    <Compile Include="Controllers\TermsAndConditionsController.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Models\AccountModels.cs" />
+    <Compile Include="Models\Msg.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Shared\Structures.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\about.css" />
+    <Content Include="Content\account.css" />
+    <Content Include="Content\images\background-small.jpg" />
+    <Content Include="Content\images\background.jpg" />
+    <Content Include="Content\images\chart-bg.png" />
+    <Content Include="Content\images\create-bizhrs-bg.png" />
+    <Content Include="Content\images\create-bizhrs-close-btn.png" />
+    <Content Include="Content\images\create-bizhrs-closedate-btn.png" />
+    <Content Include="Content\images\create-bizhrs-closepublic-btn.png" />
+    <Content Include="Content\images\create-bizhrs-closespecial-btn.png" />
+    <Content Include="Content\images\create-bizhrs-country-btn.png" />
+    <Content Include="Content\images\create-bizhrs-discard-btn.png" />
+    <Content Include="Content\images\create-bizhrs-done-btn.png" />
+    <Content Include="Content\images\create-bizhrs-hideshow-btn.png" />
+    <Content Include="Content\images\create-bizhrs-holiday.png" />
+    <Content Include="Content\images\create-bizhrs-save-btn.png" />
+    <Content Include="Content\images\create-bizhrs-selectholiday.png" />
+    <Content Include="Content\images\create-bizhrs-selectyear.png" />
+    <Content Include="Content\images\create-bizhrs-specialadd-btn.png" />
+    <Content Include="Content\images\create-bizhrs-specialdel-btn.png" />
+    <Content Include="Content\images\create-bizhrs-specialyr-btn.png" />
+    <Content Include="Content\images\create-bizhrs-table-bar.png" />
+    <Content Include="Content\images\create-bizhrs-tableline.png" />
+    <Content Include="Content\images\create-bizhrs-year-btn.png" />
+    <Content Include="Content\images\create-bizhrs-years-btn.png" />
+    <Content Include="Content\images\createflrplan-2paxtable.png" />
+    <Content Include="Content\images\createflrplan-4paxtable.png" />
+    <Content Include="Content\images\createflrplan-6paxtable.png" />
+    <Content Include="Content\images\back-btn.png" />
+    <Content Include="Content\images\createflrplan-bg.png" />
+    <Content Include="Content\images\createflrplan-create-btn.png" />
+    <Content Include="Content\images\createflrplan-reset-btn.png" />
+    <Content Include="Content\images\cutlery-left.png" />
+    <Content Include="Content\images\cutlery-right.png" />
+    <Content Include="Content\images\delete.jpg" />
+    <Content Include="Content\images\demo-btn.png" />
+    <Content Include="Content\images\details-close-btn.png" />
+    <Content Include="Content\images\done-button.png" />
+    <Content Include="Content\images\landing-background.jpg" />
+    <Content Include="Content\images\landing-forgot-btn.png" />
+    <Content Include="Content\images\landing-login-bg.png" />
+    <Content Include="Content\images\landing-login-btn.png" />
+    <Content Include="Content\images\landing-logo.png" />
+    <Content Include="Content\images\landing-register-btn.png" />
+    <Content Include="Content\images\starOff.png" />
+    <Content Include="Content\images\starOn.png" />
+    <Content Include="Content\images\summary-block-guest.png" />
+    <Content Include="Content\images\summary-breaky-header-small.png" />
+    <Content Include="Content\images\summary-breaky-header.png" />
+    <Content Include="Content\images\summary-cancel-reservation.png" />
+    <Content Include="Content\images\summary-change-reservation.png" />
+    <Content Include="Content\images\summary-customer-name.png" />
+    <Content Include="Content\images\summary-imytable-icon.png" />
+    <Content Include="Content\images\summary-line.png" />
+    <Content Include="Content\images\summary-maximise-btn.png" />
+    <Content Include="Content\images\summary-minimise-btn.png" />
+    <Content Include="Content\images\summary-new-reservation.png" />
+    <Content Include="Content\images\summary-no-show.png" />
+    <Content Include="Content\images\summary-options.png" />
+    <Content Include="Content\images\summary-refresh-btn.png" />
+    <Content Include="Content\images\summary-reservations-background.png" />
+    <Content Include="Content\images\summary-reservations-history.png" />
+    <Content Include="Content\images\summary-save-close.png" />
+    <Content Include="Content\images\summary-select-back.png" />
+    <Content Include="Content\images\summary-select-box.png" />
+    <Content Include="Content\images\summary-select-forward.png" />
+    <Content Include="Content\images\summary-show-btn.png" />
+    <Content Include="Content\images\summary-signout.png" />
+    <Content Include="Content\images\summary-table-background.png" />
+    <Content Include="Content\images\table-number-icon.png" />
+    <Content Include="Content\images\table-size5.png" />
+    <Content Include="Content\Layout.css" />
+    <Content Include="Content\location.css" />
+    <Content Include="Content\master.css" />
+    <Content Include="Content\summary-chart.css" />
+    <Content Include="Content\summary.css" />
+    <Content Include="Content\table-layout.css" />
+    <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
+    <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_65_ffffff_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_75_dadada_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_75_e6e6e6_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_95_fef1ec_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_highlight-soft_75_cccccc_1x100.png" />
+    <Content Include="Content\themes\base\images\ui-icons_222222_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_2e83ff_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_454545_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_888888_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_cd0a0a_256x240.png" />
+    <Content Include="Content\themes\base\jquery.ui.accordion.css" />
+    <Content Include="Content\themes\base\jquery.ui.all.css" />
+    <Content Include="Content\themes\base\jquery.ui.autocomplete.css" />
+    <Content Include="Content\themes\base\jquery.ui.base.css" />
+    <Content Include="Content\themes\base\jquery.ui.button.css" />
+    <Content Include="Content\themes\base\jquery.ui.core.css" />
+    <Content Include="Content\themes\base\jquery.ui.datepicker.css" />
+    <Content Include="Content\themes\base\jquery.ui.dialog.css" />
+    <Content Include="Content\themes\base\jquery.ui.progressbar.css" />
+    <Content Include="Content\themes\base\jquery.ui.resizable.css" />
+    <Content Include="Content\themes\base\jquery.ui.selectable.css" />
+    <Content Include="Content\themes\base\jquery.ui.slider.css" />
+    <Content Include="Content\themes\base\jquery.ui.tabs.css" />
+    <Content Include="Content\themes\base\jquery.ui.theme.css" />
+    <Content Include="Content\images\new-reservation-button-hover.png" />
+    <Content Include="Content\images\new-reservation-button-onclick.png" />
+    <Content Include="Content\images\new-reservation-button.png" />
+    <Content Include="Content\themes\smoothness\images\ui-bg_flat_0_aaaaaa_40x100.png" />
+    <Content Include="Content\themes\smoothness\images\ui-bg_flat_75_ffffff_40x100.png" />
+    <Content Include="Content\themes\smoothness\images\ui-bg_glass_55_fbf9ee_1x400.png" />
+    <Content Include="Content\themes\smoothness\images\ui-bg_glass_65_ffffff_1x400.png" />
+    <Content Include="Content\themes\smoothness\images\ui-bg_glass_75_dadada_1x400.png" />
+    <Content Include="Content\themes\smoothness\images\ui-bg_glass_75_e6e6e6_1x400.png" />
+    <Content Include="Content\themes\smoothness\images\ui-bg_glass_95_fef1ec_1x400.png" />
+    <Content Include="Content\themes\smoothness\images\ui-bg_highlight-soft_75_cccccc_1x100.png" />
+    <Content Include="Content\themes\smoothness\images\ui-icons_222222_256x240.png" />
+    <Content Include="Content\themes\smoothness\images\ui-icons_2e83ff_256x240.png" />
+    <Content Include="Content\themes\smoothness\images\ui-icons_454545_256x240.png" />
+    <Content Include="Content\themes\smoothness\images\ui-icons_888888_256x240.png" />
+    <Content Include="Content\themes\smoothness\images\ui-icons_cd0a0a_256x240.png" />
+    <Content Include="Content\themes\smoothness\jquery-ui-1.8.18.custom.css" />
+    <Content Include="Content\timepicker.css" />
+    <Content Include="Global.asax" />
+    <Content Include="Js\BookingDetailScript.js" />
+    <Content Include="Js\BookingDetailStyle.css" />
+    <Content Include="Js\core.js" />
+    <Content Include="Js\functionlib.js" />
+    <Content Include="Js\images\starOff.png" />
+    <Content Include="Js\images\starOn.png" />
+    <Content Include="Js\jquery-ui-timepicker-addon.js" />
+    <Content Include="Js\jquery.maskedinput-1.3.min.js" />
+    <Content Include="Js\popup.css" />
+    <Content Include="Scripts\accordion-controller.js" />
+    <Content Include="Scripts\add-menu.js" />
+    <Content Include="Scripts\ajax-summary.js" />
+    <Content Include="Scripts\availability.js" />
+    <Content Include="Scripts\biz-hour.js" />
+    <Content Include="Scripts\booking-detail.js" />
+    <Content Include="Scripts\chart-adapter.js" />
+    <Content Include="Scripts\holiday-setting.js" />
+    <Content Include="Scripts\menu-editornew.js" />
+    <Content Include="Scripts\simple-reservation-form.js" />
+    <Content Include="Scripts\tab-controller.js" />
+    <Content Include="Scripts\drag.js" />
+    <Content Include="Scripts\flexible-layout.js" />
+    <Content Include="Scripts\fullscreen-image-viewer.js" />
+    <Content Include="Scripts\fullscreen-menu-viewer.js" />
+    <Content Include="Scripts\holiday.js" />
+    <Content Include="Scripts\i-my-menu-v3.js" />
+    <Content Include="Scripts\i-my-menu.js" />
+    <Content Include="Scripts\info-box.js" />
+    <Content Include="Scripts\jlinq.js" />
+    <Content Include="Scripts\jquery-1.7.2.js" />
+    <Content Include="Scripts\jquery-ui-1.8.20.custom.min.js" />
+    <Content Include="Scripts\jquery-ui-timepicker-addon-biz.js" />
+    <Content Include="Scripts\jquery.event.drag-2.2.js" />
+    <Content Include="Scripts\jquery.form.js" />
+    <Content Include="Scripts\jquery.meio.mask.js" />
+    <Content Include="Scripts\jquery.scrollTo.js" />
+    <Content Include="Scripts\jquerypp.js" />
+    <Content Include="Scripts\layout.js" />
+    <Content Include="Scripts\location.js" />
+    <Content Include="Scripts\forwarding-menu.js" />
+    <Content Include="Scripts\jquery-ui-timepicker-addon-modified.js" />
+    <Content Include="Scripts\jquery-ui-timepicker-addon.js" />
+    <Content Include="Scripts\menu-editor.js" />
+    <Content Include="Scripts\menu-input.js" />
+    <Content Include="Scripts\menueditor.js" />
+    <Content Include="Scripts\menueditor1.js" />
+    <Content Include="Scripts\mobiscroll\mobiscroll-2.0.1.custom.min.js" />
+    <Content Include="Scripts\mobiscroll\mobiscroll.android-ics-2.0.js" />
+    <Content Include="Scripts\mobiscroll\mobiscroll.core-2.0.1.js" />
+    <Content Include="Scripts\mobiscroll\mobiscroll.core-2.0.3.js" />
+    <Content Include="Scripts\mobiscroll\mobiscroll.datetime-2.0.1.js" />
+    <Content Include="Scripts\mobiscroll\mobiscroll.datetime-2.0.3.js" />
+    <Content Include="Scripts\mobiscroll\mobiscroll.ios-2.0.2.js" />
+    <Content Include="Scripts\mobiscroll\mobiscroll.ios-2.0.js" />
+    <Content Include="Scripts\numbering.js" />
+    <Content Include="Scripts\preview.js" />
+    <Content Include="Scripts\profile.js" />
+    <Content Include="Scripts\report.js" />
+    <Content Include="Scripts\reservation.js" />
+    <Content Include="Scripts\resize.js" />
+    <Content Include="Scripts\preview-manager.js" />
+    <Content Include="Scripts\summary.js" />
+    <Content Include="Scripts\touchscroll.js" />
+    <Content Include="Scripts\utils.js" />
+    <Content Include="Scripts\zoom.js" />
+    <Content Include="Scripts\jquery.ui.touch-punch.js" />
+    <Content Include="Scripts\progress-dialog.js" />
+    <None Include="Content\menu-styles\style3\fonts\BebasNeue-webfont.eot" />
+    <None Include="Content\menu-styles\style3\fonts\BebasNeue-webfont.ttf" />
+    <None Include="Content\menu-styles\style3\fonts\BebasNeue-webfont.woff" />
+    <None Include="Content\menu-styles\style3\fonts\HP-Thanh Xuan.TTF" />
+    <None Include="Content\menu-styles\style3\fonts\htxuan.TTF" />
+    <None Include="Service References\iRstSrv\iMyRestaurent.iRstSrv.BizHourCheckBeforeDeleteReponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\iRstSrv\iMyRestaurent.iRstSrv.BizHourCreateNewResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\iRstSrv\iMyRestaurent.iRstSrv.BizHourDeleteResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\iRstSrv\iMyRestaurent.iRstSrv.BizHoursByDateAndTimeResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\iRstSrv\iMyRestaurent.iRstSrv.BizHoursByLocIDAndDateResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\iRstSrv\iMyRestaurent.iRstSrv.BizHoursByLocIDResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\iRstSrv\iMyRestaurent.iRstSrv.BizHoursGetMasterListResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\iRstSrv\iMyRestaurent.iRstSrv.BizHoursUpdateAllResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\iRstSrv\iMyRestaurent.iRstSrv.BookingCreateNewResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\iRstSrv\iMyRestaurent.iRstSrv.BookingDetailsByBookingIDResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\iRstSrv\iMyRestaurent.iRstSrv.BookingDetailsEditResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\iRstSrv\iMyRestaurent.iRstSrv.BookingDragDropCheckResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\iRstSrv\iMyRestaurent.iRstSrv.BookingsHistoryByPersonIDResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\iRstSrv\iMyRestaurent.iRstSrv.CountriesGetListResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\iRstSrv\iMyRestaurent.iRstSrv.CurrenciesGetListResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\iRstSrv\iMyRestaurent.iRstSrv.GroupTypesGetListResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\iRstSrv\iMyRestaurent.iRstSrv.GuestNameGetListResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\iRstSrv\iMyRestaurent.iRstSrv.LanguagesGetListResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\iRstSrv\iMyRestaurent.iRstSrv.LocationCheckBeforeDeleteReponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\iRstSrv\iMyRestaurent.iRstSrv.LocationCreateNewResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\iRstSrv\iMyRestaurent.iRstSrv.LocationDeleteLogicResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\iRstSrv\iMyRestaurent.iRstSrv.LocationEditResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\iRstSrv\iMyRestaurent.iRstSrv.LocationListByLocIDResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\iRstSrv\iMyRestaurent.iRstSrv.LocationListByRestIDResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\iRstSrv\iMyRestaurent.iRstSrv.LocationTablesGetListResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\iRstSrv\iMyRestaurent.iRstSrv.MenuAddResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\iRstSrv\iMyRestaurent.iRstSrv.MenuDeleteResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\iRstSrv\iMyRestaurent.iRstSrv.MenuGetDetailResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\iRstSrv\iMyRestaurent.iRstSrv.MenuGetNameDescResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\iRstSrv\iMyRestaurent.iRstSrv.MenuGroupAddResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\iRstSrv\iMyRestaurent.iRstSrv.MenuGroupDeleteResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\iRstSrv\iMyRestaurent.iRstSrv.MenuGroupsGetListResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\iRstSrv\iMyRestaurent.iRstSrv.MenuGroupUpdateResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\iRstSrv\iMyRestaurent.iRstSrv.MenuImageDeleteResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\iRstSrv\iMyRestaurent.iRstSrv.MenuItemAddResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\iRstSrv\iMyRestaurent.iRstSrv.MenuItemDeleteResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\iRstSrv\iMyRestaurent.iRstSrv.MenuItemsGetListResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\iRstSrv\iMyRestaurent.iRstSrv.MenuItemUpdateResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\iRstSrv\iMyRestaurent.iRstSrv.MenuLocationSettingsApplyResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\iRstSrv\iMyRestaurent.iRstSrv.MenuLocationSettingsGetListResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\iRstSrv\iMyRestaurent.iRstSrv.MenuMappingApplyResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\iRstSrv\iMyRestaurent.iRstSrv.MenuMappingGetListResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\iRstSrv\iMyRestaurent.iRstSrv.MenuMetaDataGetListResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\iRstSrv\iMyRestaurent.iRstSrv.MenuOptionAddResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\iRstSrv\iMyRestaurent.iRstSrv.MenuOptionDeleteResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\iRstSrv\iMyRestaurent.iRstSrv.MenuOptionsGetListResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\iRstSrv\iMyRestaurent.iRstSrv.MenuOptionUpdateResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\iRstSrv\iMyRestaurent.iRstSrv.MenuSectionAddResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\iRstSrv\iMyRestaurent.iRstSrv.MenuSectionDeleteResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\iRstSrv\iMyRestaurent.iRstSrv.MenuSectionsGetListResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\iRstSrv\iMyRestaurent.iRstSrv.MenuSectionUpdateResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\iRstSrv\iMyRestaurent.iRstSrv.MenuSetDisplayOrderResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\iRstSrv\iMyRestaurent.iRstSrv.MenusGetListResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\iRstSrv\iMyRestaurent.iRstSrv.MenuSubSectionsGetListResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\iRstSrv\iMyRestaurent.iRstSrv.MenuTypeImageGetByIDResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\iRstSrv\iMyRestaurent.iRstSrv.MenuTypeImageGetListResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\iRstSrv\iMyRestaurent.iRstSrv.MenuTypeImagesAddListResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\iRstSrv\iMyRestaurent.iRstSrv.MenuTypeImagesCopyAllResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\iRstSrv\iMyRestaurent.iRstSrv.MenuTypeImagesCopyListResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\iRstSrv\iMyRestaurent.iRstSrv.MenuTypeImagesGetAllResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\iRstSrv\iMyRestaurent.iRstSrv.MenuTypeImagesGetListResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\iRstSrv\iMyRestaurent.iRstSrv.MenuTypeImagesSaveListResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\iRstSrv\iMyRestaurent.iRstSrv.MenuTypeImagesUpdateListResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\iRstSrv\iMyRestaurent.iRstSrv.MenuTypeImageUpdateDeleteResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\iRstSrv\iMyRestaurent.iRstSrv.MenuTypesGetListResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\iRstSrv\iMyRestaurent.iRstSrv.MenuUpdateLanguagesResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\iRstSrv\iMyRestaurent.iRstSrv.MenuUpdateResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\iRstSrv\iMyRestaurent.iRstSrv.PublicHolidayGetMasterListResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\iRstSrv\iMyRestaurent.iRstSrv.PublicHolidaysCheckBeforeCloseResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\iRstSrv\iMyRestaurent.iRstSrv.PublicHolidaysCountryIDGetResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\iRstSrv\iMyRestaurent.iRstSrv.PublicHolidaysGetFullListResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\iRstSrv\iMyRestaurent.iRstSrv.PublicHolidaysGetListResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\iRstSrv\iMyRestaurent.iRstSrv.PublicHolidaysGetOverrideListResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\iRstSrv\iMyRestaurent.iRstSrv.PublicHolidaysOpenAllResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\iRstSrv\iMyRestaurent.iRstSrv.PublicHolidaysOverrideResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\iRstSrv\iMyRestaurent.iRstSrv.PublicSpecialHolidaysOverrideResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\iRstSrv\iMyRestaurent.iRstSrv.ReportBookingListResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\iRstSrv\iMyRestaurent.iRstSrv.ReportNewBookingsSummaryResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\iRstSrv\iMyRestaurent.iRstSrv.ReservationsSummaryResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\iRstSrv\iMyRestaurent.iRstSrv.RestaurantImageDeleteResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\iRstSrv\iMyRestaurent.iRstSrv.RestaurantTypesResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\iRstSrv\iMyRestaurent.iRstSrv.RestDataGetByIDResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\iRstSrv\iMyRestaurent.iRstSrv.RestProfileEditResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\iRstSrv\iMyRestaurent.iRstSrv.RestRegisterNewResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\iRstSrv\iMyRestaurent.iRstSrv.RestUserChangePWDConfirmResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\iRstSrv\iMyRestaurent.iRstSrv.RestUserChangePWDResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\iRstSrv\iMyRestaurent.iRstSrv.RestUserGetNewPWDResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\iRstSrv\iMyRestaurent.iRstSrv.RestUserGetPWDResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\iRstSrv\iMyRestaurent.iRstSrv.RestUserGetScrQuestionResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\iRstSrv\iMyRestaurent.iRstSrv.RestUserLoginResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\iRstSrv\iMyRestaurent.iRstSrv.SittingTimeCheckBeforeCloseReponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\iRstSrv\iMyRestaurent.iRstSrv.SittingTimeCloseResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\iRstSrv\iMyRestaurent.iRstSrv.SittingTimesByLocIDResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\iRstSrv\iMyRestaurent.iRstSrv.SittingTimesBySittingIDResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\iRstSrv\iMyRestaurent.iRstSrv.SpecialDayAddResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\iRstSrv\iMyRestaurent.iRstSrv.SpecialDayForOverrideGetListResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\iRstSrv\iMyRestaurent.iRstSrv.SpecialDaysCheckBeforeCloseResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\iRstSrv\iMyRestaurent.iRstSrv.SpecialDaysGetListResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\iRstSrv\iMyRestaurent.iRstSrv.SpecialDaysOverrideResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\iRstSrv\iMyRestaurent.iRstSrv.SpecialDaysUpdateDeleteResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\iRstSrv\iMyRestaurent.iRstSrv.StyleSheetsGetListResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\iRstSrv\iMyRestaurent.iRstSrv.TableCheckBeforeDeleteReponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\iRstSrv\iMyRestaurent.iRstSrv.TableDeleteReponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\iRstSrv\iMyRestaurent.iRstSrv.TableListByLocIDResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\iRstSrv\iMyRestaurent.iRstSrv.TablesAddUpdateListResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\iRstSrv\iMyRestaurent.iRstSrv.TablesDeleteListResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\iRstSrv\iMyRestaurent.iRstSrv.TableStatusByLocationIDAndTimeResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\iRstSrv\iMyRestaurent.iRstSrv.TablesUpdateListResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\iRstSrv\iMyRestaurent.iRstSrv.TextsAddUpdateListResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\iRstSrv\iRstSrv.wsdl" />
+    <None Include="Service References\iRstSrv\iRstSrv.disco" />
+    <None Include="Service References\iRstSrv\configuration91.svcinfo" />
+    <None Include="Service References\iRstSrv\configuration.svcinfo" />
+    <None Include="Service References\iRstSrv\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Service References\iRstSrv\configuration911.svcinfo" />
+    <Content Include="Views\Summary\TimeRuler.cshtml">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Content\Site.css" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Views\Account\Login.cshtml" />
+    <Content Include="Views\Account\Register.cshtml" />
+    <Content Include="Views\Account\Forgot.cshtml" />
+    <Content Include="Views\About\Index.cshtml" />
+    <Content Include="Views\TermsAndConditions\Index.cshtml" />
+    <Content Include="Views\Account\ChangePassword.cshtml" />
+    <Content Include="Views\Reservation\BookingDetail.cshtml" />
+    <Content Include="Views\Location\List.cshtml" />
+    <Content Include="Views\Shared\ProgressDialog.cshtml" />
+    <Content Include="Views\Availability\Availability.cshtml" />
+    <Content Include="Views\Demo\Index.cshtml" />
+    <Content Include="Views\Location\Location.cshtml" />
+    <Content Include="Views\Layout\Layout.cshtml" />
+    <Content Include="Views\Numbering\Numbering.cshtml" />
+    <Content Include="Views\BusinessHours\MenuType.cshtml" />
+    <Content Include="Views\BusinessHours\MenuTypeHeader.cshtml" />
+    <Content Include="Views\BusinessHours\MenuInput.cshtml" />
+    <Content Include="Views\Profile\Profile.cshtml" />
+    <Content Include="Views\BusinessHours\Create.cshtml" />
+    <Content Include="Views\Shared\InfoBox.cshtml" />
+    <Content Include="Views\Reservation\Reservation.cshtml" />
+    <Content Include="Views\Shared\Report.cshtml" />
+    <Content Include="Views\Summary\TableRuler.cshtml" />
+    <Content Include="Views\Summary\Booking.cshtml" />
+    <Content Include="Views\Summary\BizHour.cshtml" />
+    <Content Include="Views\Menu\OldEditor0.cshtml" />
+    <None Include="Views\Menu\Editor.cshtml" />
+    <Content Include="Views\Menu\OldEditor1.cshtml" />
+    <Content Include="Views\Holiday\HolidaySetting.cshtml" />
+    <Content Include="Views\Holiday\Template.cshtml" />
+    <Content Include="Views\Summary\Summary.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Service References\iRstSrv\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target> -->
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>False</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>53319</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>
+          </IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+</Project>

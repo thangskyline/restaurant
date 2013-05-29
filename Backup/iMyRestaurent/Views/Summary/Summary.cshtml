@@ -1,0 +1,175 @@
+﻿@model iMyRestaurent.Models.SummaryModel
+@section import {
+    @NoCache.Instance.Css(Url, "~/Content/summary.css")
+    @NoCache.Instance.Css(Url, "~/Content/biz-hours.css")
+    @NoCache.Instance.Css(Url, "~/Content/buttons.css")
+    @NoCache.Instance.Css(Url, "~/Content/summary-chart.css")
+    @NoCache.Instance.Css(Url, "~/Js/popup.css")
+    @NoCache.Instance.Css(Url, "~/Content/i-my-menu.css")
+    @NoCache.Instance.Css(Url, "~/Content/booking-detail.css")
+    @NoCache.Instance.Css(Url, "~/Content/report.css")
+    @NoCache.Instance.Css(Url, "~/Content/timepicker.css")
+    @NoCache.Instance.Css(Url, "~/Content/i-my-menu-v3.css")
+    @NoCache.Instance.Css(Url, "~/Content/menu-styles/style1/style.css")
+    @NoCache.Instance.Css(Url, "~/Content/menu-styles/style2/style.css")
+    @NoCache.Instance.Css(Url, "~/Content/menu-styles/style3/style.css")
+    @NoCache.Instance.Css(Url, "~/Content/i-my-menu-v2.css")
+    @NoCache.Instance.Css(Url, "~/Content/mobiscroll/mobiscroll.core-2.0.3.css")
+    @if (Utils.IsAndroid())
+    {
+        <text>
+        @NoCache.Instance.Css(Url, "~/Content/mobiscroll/mobiscroll.android-ics-2.0.css")
+        </text>
+    }
+    else
+    {
+        <text>
+        @NoCache.Instance.Css(Url, "~/Content/mobiscroll/mobiscroll.ios-2.0.2.css")
+        </text>
+    }
+}
+@section script {
+    @NoCache.Instance.Javascript(Url, "~/Scripts/jlinq.js")
+    @NoCache.Instance.Javascript(Url, "~/Js/core.js")
+    @NoCache.Instance.Javascript(Url, "~/Scripts/zoom.js")
+    @NoCache.Instance.Javascript(Url, "~/Scripts/drag.js")
+    @NoCache.Instance.Javascript(Url, "~/Scripts/forwarding-menu.js")
+    @NoCache.Instance.Javascript(Url, "~/Scripts/jquery.form.js")
+    @NoCache.Instance.Javascript(Url, "~/Scripts/jquery.meio.mask.js")
+    @NoCache.Instance.Javascript(Url, "~/Scripts/i-my-menu.js")
+    @NoCache.Instance.Javascript(Url, "~/Scripts/i-my-menu-v3.js")
+    @NoCache.Instance.Javascript(Url, "~/Scripts/preview.js")
+    @NoCache.Instance.Javascript(Url, "~/Scripts/fullscreen-image-viewer.js")
+    @NoCache.Instance.Javascript(Url, "~/Scripts/fullscreen-menu-viewer.js")
+    @NoCache.Instance.Javascript(Url, "~/Scripts/jquery.event.drag-2.2.js")
+    @NoCache.Instance.Javascript(Url, "~/Scripts/booking-detail.js")
+    @NoCache.Instance.Javascript(Url, "~/Scripts/report.js")
+    @NoCache.Instance.Javascript(Url, "~/Scripts/chart-adapter.js")
+    <!--<script type="text/javascript" src="@NoCache.Instance.Url(Url, "~/Scripts/summary.js")"></script>-->
+    @NoCache.Instance.Javascript(Url, "~/Scripts/mobiscroll/mobiscroll.core-2.0.3.js")
+    @NoCache.Instance.Javascript(Url, "~/Scripts/mobiscroll/mobiscroll.datetime-2.0.3.js")
+    @if (Utils.IsAndroid())
+    {
+        <text>
+        @NoCache.Instance.Javascript(Url, "~/Scripts/mobiscroll/mobiscroll.android-ics-2.0.js")
+        </text>
+    }
+    else
+    {
+        <text>
+        @NoCache.Instance.Javascript(Url, "~/Scripts/mobiscroll/mobiscroll.ios-2.0.2.js")
+        </text>
+    }
+    @NoCache.Instance.Javascript(Url, "~/Scripts/ajax-summary.js")
+    @NoCache.Instance.Javascript(Url, "~/Scripts/simple-reservation-form.js")
+    <script type="text/javascript">
+        var url = {};
+        url.getSummary = '@Url.Action("GetSummary", "Summary")';
+    </script>
+}
+@{
+    ViewBag.Title = "iMyRestaurant - Summary Page";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    iMyRestaurent.iRstSrv.RestaurantData rData = (iMyRestaurent.iRstSrv.RestaurantData)Session[iMyRestaurent.Shared.Constants.RestaurantData];
+
+    DateTime time = Model.BoundaryStartTime;
+    int chartWidth = (Model.BlockNo + 2) * 15;
+}
+@Html.Partial("Report")
+<div id="title">
+    <span>iMyRestaurant - Summary of @rData.Restaurant_Name Reservations</span>
+</div>
+<div id="model-data" class="hidden" init-date="@Model.Date" zoom="@Model.ZoomScale" scroll-top="@Model.ScrollTop" scroll-left="@Model.ScrollLeft" location="@Model.LocationID">
+</div>
+<div id="container" class="center-box">
+    <!-- Hidden fields to store zoom & scroll position -->
+    @Html.HiddenFor(model => model.ZoomScale, new { value = Model.ZoomScale, id = "zoom-scale" })
+    @Html.HiddenFor(model => model.ScrollTop, new { value = Model.ScrollTop, id = "scroll-top" })
+    @Html.HiddenFor(model => model.ScrollLeft, new { value = Model.ScrollLeft, id = "scroll-left" })
+    <div class="hidden" id="boundary-start-time">@Model.BoundaryStartTime.ToString()</div>
+    <div class="hidden" id="root-time">@Model.BoundaryStartTime.ToString("hh:mm")</div>
+    <!-- Navigator Box -->
+    <table border="0" align="center" cellpadding="0" cellspacing="3" id="navigator-box"
+        class="center-box">
+        <tr valign="middle">
+            <td width="320" valign="middle">
+                <table border="0" cellpadding="0" cellspacing="0">
+                    <tr>
+                        <td width="40" valign="middle">
+                            <span class="bold-text">Date</span>
+                        </td>
+                        <td width="28" valign="middle">
+                            <img src="@NoCache.Instance.Url(Url, "~/content/images/summary-select-back.png")" width="27" height="24" alt="" id="previous-date"/>
+                        </td>
+                        <td width="163" valign="top">
+                            <input type="text" readonly="readonly" id="date-picker" />
+                        </td>
+                        <td valign="middle">
+                            <img src="@NoCache.Instance.Url(Url, "~/content/images/summary-select-forward.png")" width="27" height="24" alt="" id="next-date"/>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+            <td width="520" valign="middle">
+                <table border="0" cellpadding="0" cellspacing="0">
+                    <tr>
+                        <td width="120" valign="middle">
+                            <span class="bold-text">For Location</span>
+                        </td>
+                        <td width="28" valign="middle">
+                            <img src="@NoCache.Instance.Url(Url, "~/content/images/summary-select-back.png")" width="27" height="24" alt="" id="previous-location" />
+                        </td>
+                        <td width="163" valign="top">
+                            @if (Model.Locations != null && Model.Locations.LocationList != null)
+                            {
+                                @Html.DropDownListFor(model => model.LocationID, new SelectList(Model.Locations.LocationList, "LocationID", "Name"), new { id = "location-list" })
+                            }
+                            else
+                            {
+                                @Html.DropDownListFor(model => model.LocationID, new SelectList(new iMyRestaurent.iRstSrv.LocationData[] { }, "LocationID", "Name"), new { id = "location-list" })
+                            }
+                        </td>
+                        <td valign="middle">
+                            <img src="@NoCache.Instance.Url(Url, "~/content/images/summary-select-forward.png")" width="27" height="24" alt="" id="next-location" />
+                        </td>
+                    </tr>
+                </table>
+            </td>
+            <td width="90" valign="middle">
+                <img src="@NoCache.Instance.Url(Url, "~/content/images/summary-refresh-btn.png")" width="33" height="31" alt="" id="btn-refresh" />
+            </td>
+            <td valign="top">
+                <table border="0" cellspacing="0" cellpadding="0">
+                    <tr>
+                        <td valign="middle" style="padding-right: 5px;">
+                            <input type="button" class="image-button button-zoom-out" id="btn-zoom-out" />
+                        </td>
+                        <td valign="middle">
+                            <input type="button" class="image-button button-zoom-in" id="btn-zoom-in" />
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+    <!-- Opacity Box -->
+    <div class="opacity-box center-box" style="padding: 10px;">
+    </div>
+</div>
+<!-- end section body -->
+@section footer {
+    <!-- Button Panel -->
+    @using (Html.BeginForm(null, null, FormMethod.Post, new { id = "forwarding-form" }))
+    {
+        @Html.Hidden("SummaryLocationID", Model.LocationID)
+        @Html.Hidden("SummaryDate", Model.Date)
+        @Html.Hidden("Mode", "", new { id = "flow-mode" })                                                                                                                                                       
+        <div class="clearfix">
+            @Html.ActionLink(" ", "Logoff", "Account", null, new { @class = "image-button button-signout left" })
+            <button type="button" class="image-button button-options right">
+            </button>
+            <button type="button" class="center-box image-button button-create-reservation">
+            </button>
+        </div>
+    }
+}

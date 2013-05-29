@@ -1,0 +1,178 @@
+﻿@model iMyRestaurent.Models.MenuInput
+@{
+    string[] eventTypes = new string[] 
+    {
+        "Restaurant opening time", 
+        "Kitchen close at", 
+        "Restaurant closing time",
+        "Guest's preferred allowed time to reserve table",
+        "Time required to prepare tables between guests (min)",
+        "Do you want to copy these times to the next day?",
+        "Upload your menu"
+    };
+}
+<table class="menu-input" id="@Model.SittingID">
+    <tbody>
+        @for (int line = 0; line < 10; line++)
+        {
+            <tr>
+                <!-- Add text -->
+                @switch (line)
+                {
+                    case 0:
+                    <td class="menu-name" rowspan="10">
+                        <input type="text" class="txt-menu-name" value="@(Model == null ? "" : Model.Name)" tabindex="@(Model.Index * 49 + 1)" />
+                        <br />
+                        @if (!Model.IsEmpty)
+                        {
+                            <button type="button" class="image-button button-delete-menu center-box" style="margin-top: 5px;">
+                            </button>
+                        }
+                    </td>
+                    <td colspan="2" class="menu-type black-line">
+                        <span>Open or close on this day</span>
+                    </td>
+                        break;
+                    case 1:
+                    <td colspan="2" class="menu-type gray-line">
+                        <span>Restaurant opening time</span>
+                    </td>
+                        break;
+                    case 2:
+                    <td colspan="2" class="menu-type gray-line">
+                        <span>Kitchen close at</span>
+                    </td> 
+                        break;
+                    case 3:
+                    <td colspan="2" class="menu-type black-line">
+                        <span>Restaurant closing time</span>
+                    </td> 
+                        break;
+                    case 4:
+                    <td rowspan="3" class="menu-type black-line">
+                        <span>Guest's preferred allowed time to reserve table</span>
+                    </td>
+                    <td class="menu-type gray-line">
+                        <span>(Max)</span>
+                    </td> 
+                        break;
+                    case 5:
+                    <td class="menu-type gray-line">
+                        <span>(Med)</span>
+                    </td>
+                        break;
+                    case 6:
+                    <td class="menu-type black-line">
+                        <span>(Min)</span>
+                    </td>
+                        break;
+                    case 7:
+                    <td colspan="2" class="menu-type black-line">
+                        <span>Time required to prepare tables between guests (min)</span>
+                    </td> 
+                        break;
+                    case 8:
+                    <td colspan="2" class="menu-type black-line">
+                        <span>Do you want to copy these times to the next day?</span>
+                    </td> 
+                        break;
+                    case 9:
+                    <td colspan="2" class="menu-type">
+                        <span>Upload your menu</span>
+                    </td> 
+                        break;
+                }
+                <!-- add control -->
+                @for (int day = 0; day < 7; day++)
+                {
+                    string value = string.Empty;
+                    bool isClose = false;
+
+                    // calculate value
+                    if (!Model.IsEmpty)
+                    {
+                        var shift = Model.SittingTimes[day];
+
+                        switch (line)
+                        {
+                            case 1:
+                                value = string.IsNullOrEmpty(shift.Start_Time) ? "00:00" : shift.Start_Time.Substring(0, 5);
+                                break;
+                            case 2:
+                                value = string.IsNullOrEmpty(shift.KitchenClosedTime) ? "00:00" : shift.KitchenClosedTime.Substring(0, 5);
+                                break;
+                            case 3:
+                                value = string.IsNullOrEmpty(shift.End_Time) ? "00:00" : shift.End_Time.Substring(0, 5);
+                                break;
+                            case 4:
+                                value = string.IsNullOrEmpty(shift.LongSittingTime) ? "00:00" : iMyRestaurent.Shared.Utils.ConvertToTimeFormat(shift.LongSittingTime);
+                                break;
+                            case 5:
+                                value = string.IsNullOrEmpty(shift.MediumSittingTime) ? "00:00" : iMyRestaurent.Shared.Utils.ConvertToTimeFormat(shift.MediumSittingTime);
+                                break;
+                            case 6:
+                                value = string.IsNullOrEmpty(shift.ShortSittingTime) ? "00:00" : iMyRestaurent.Shared.Utils.ConvertToTimeFormat(shift.ShortSittingTime);
+                                break;
+                            case 7:
+                                value = string.IsNullOrEmpty(shift.ChangeOverTime) ? "0" : shift.ChangeOverTime;
+                                break;
+                        }
+                        isClose = !shift.State.Equals("open", StringComparison.CurrentCultureIgnoreCase);
+                    }
+
+                    if (line == 0)
+                    {
+                    <td class="@("close-state " + day + (isClose ? "" : " hidden"))" rowspan="10" valign="middle" id="@day">
+                        CLOSED
+                    </td>
+                    <td class="@("menu-day black-line" + (isClose ? " hidden" : "") + (day % 2 == 1 ? "" : " odd"))">
+                        <button type="button" class="@("image-button button-menu-close " + day)" id="@day">
+                        </button>
+                    </td>
+                    }
+                    else if (line == 8)
+                    {
+                    <td class="@("menu-day black-line " + day + (isClose ? " hidden" : "") + (day % 2 == 1 ? "" : " odd"))">
+                        <button type="button" class="@("image-button button-copy " + day)">
+                        </button>
+                    </td>
+                    }
+                    else if (line == 9)
+                    {
+                    <td class="@("menu-day " + day + (isClose ? " hidden" : "") + (day % 2 == 1 ? "" : " odd"))">
+                        <button type="button" class="@("image-button button-imymenu " + day)">
+                        </button>
+                    </td> 
+                    }
+                    else
+                    {
+                    <td class="@("menu-day " + day + (line == 3 || line == 6 || line == 7 ? " black-line" : " gray-line") + (isClose ? " hidden" : "") + (day % 2 == 1 ? "" : " odd"))">
+                        <input type="text" class="@("menu-day-input " + (line == 7 ? "minute-picker" : "time-picker"))" value="@value" tabindex="@(Model.Index * 49 + day * 7 + line + 1)" />
+                    </td>
+                    }
+                }
+            </tr>
+        }
+        <tr style="background-color: #ECB100; width: 100%; height: 20px; min-height: 20px;">
+            <td colspan="10">
+            </td>
+            </tr>
+        <tr class="hidden">
+            <td colspan="3">
+            </td>
+            @for (int day = 0; day < 7; day++)
+            {
+                int id = 0;
+
+                if (!Model.IsEmpty)
+                {
+                    var shift = Model.SittingTimes[day];
+                    id = shift.EventID;
+                }
+                <td class="@("event-id " + day)">
+                    <span>@id</span>
+                </td> 
+            }
+        </tr>
+    </tbody>
+</table>

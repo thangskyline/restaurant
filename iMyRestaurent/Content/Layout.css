@@ -1,0 +1,86 @@
+﻿.Layout_table_chairs
+{
+    background: url("images/people-image.png") no-repeat;
+    text-align: center;
+    width: 28px;
+    height: 27px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.Layout_table_chairs .number
+{
+    padding-top: 10px;
+    font-weight: bold;
+    color: White;
+}
+.Layout_table_delete
+{
+    text-align: right;
+    vertical-align: text-top;
+}
+.Layout_table_delete .delete, .Layout_table_order .index
+{
+    border-radius: 50%;
+    -moz-border-radius: 50%;
+    min-width: 16px;
+    height: 16px;
+    line-height: 14px;
+    text-align: center;
+    font-size: small;
+    font-weight: bold;
+}
+.Layout_table_delete .delete
+{
+    background-color: Black;
+    cursor: pointer;
+    color: White;
+}
+.Layout_table_order .index
+{
+    background-color: Blue;
+    color: White;
+}
+
+.Layout_table_order
+{
+    text-align: right;
+    vertical-align: text-top;
+}
+
+.Layout_table_avai
+{
+    text-align: left;
+    vertical-align: text-bottom;
+}
+#btnReset
+{
+    background-image: url("images/createflrplan-reset-btn.png");
+    width: 67px;
+    height: 28px;
+    margin-left: 20px;
+}
+#btnRestart
+{
+    margin-left: 20px;
+}
+#divContainer
+{
+    overflow: auto;
+    min-height: 50px;
+    position: relative;
+    padding-top: 10px;
+}
+#txtStartNum
+{
+    width: 100px;
+}
+#btnSave
+{
+    background-image: url("images/save-layout-btn.png");
+    width: 108px;
+    height: 28px;
+}
+input#txt-start-number 
+{
+    text-align: center;
+}

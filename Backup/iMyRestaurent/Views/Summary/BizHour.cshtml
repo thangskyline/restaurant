@@ -1,0 +1,59 @@
+﻿@model iMyRestaurent.Models.DisplayBizHourModel
+@if (Model.BizHour.Start_Time == Model.BizHour.End_Time || Model.BizHour.State.Equals("closed", StringComparison.CurrentCultureIgnoreCase))
+{
+    // do nothing
+}
+else
+{
+    try
+    {
+        DateTime sTime;
+        DateTime eTime;
+        DateTime cTime;
+        // convert
+        DateTime.TryParseExact(Model.BizHour.Start_Time, "HH:mm:ss", System.Globalization.CultureInfo.CurrentCulture, System.Globalization.DateTimeStyles.None, out sTime);
+        DateTime.TryParseExact(Model.BizHour.End_Time, "HH:mm:ss", System.Globalization.CultureInfo.CurrentCulture, System.Globalization.DateTimeStyles.None, out eTime);
+        DateTime.TryParseExact(Model.BizHour.KitchenClosedTime, "HH:mm:ss", System.Globalization.CultureInfo.CurrentCulture, System.Globalization.DateTimeStyles.None, out cTime);
+        double sBlock = sTime.Subtract(Model.MasterData.BoundaryStartTime).TotalMinutes / 15;
+        if (eTime.CompareTo(sTime) < 0)
+        {
+            eTime = eTime.AddDays(1);
+        }
+
+        double lBlock = eTime.Subtract(sTime).TotalMinutes / 15;
+
+        if (cTime.CompareTo(sTime) < 0)
+        {
+            cTime = cTime.AddDays(1);
+        }
+        double oBlock = cTime.Subtract(sTime).TotalMinutes / 15;
+
+        if (sTime.CompareTo(eTime) != 0)
+        {
+            string titleText = Model.BizHour.EventName + " (" + sTime.ToString("HH:mm") + " - " + eTime.ToString("HH:mm") + ")";
+                            
+    <div class="biz-hour-area" event-id="@Model.BizHour.EventID" start-block="@sBlock" length="@lBlock" opening-length="@oBlock">
+        <div class="title">
+            <span>@titleText</span>
+        </div>
+        <div>
+            <table>
+                <tr>
+                    <td class="open">
+                    </td>
+                    @if (oBlock < lBlock)
+                    {
+                        <td class="close">
+                        </td>
+                    }
+                </tr>
+            </table>
+        </div>
+        <div class="title" colspan="2">
+            <span>@titleText</span>
+        </div>
+    </div>
+        }
+    }
+    catch { }
+}

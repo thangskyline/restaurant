@@ -1,0 +1,159 @@
+﻿@model iMyRestaurent.Models.BizHourModel
+@{
+    switch (Model.Mode)
+    {
+        case iMyRestaurent.Shared.Mode.Create:
+        case iMyRestaurent.Shared.Mode.CreateAfterRegistering:
+        case iMyRestaurent.Shared.Mode.CreateFromLocationList:
+            ViewBag.Title = "iMyRestaurant - Create " + Model.LocationName + " business hours";
+            ViewBag.BackAction = Url.Action("Create", "Availability");
+            break;
+
+        case iMyRestaurent.Shared.Mode.EditFromBusinessHours:
+            ViewBag.Title = "iMyRestaurant - Edit " + Model.LocationName + " business hours";
+            ViewBag.BackAction = Url.Action("EditBusinessHours", "Location");
+            break;
+        default:
+
+            break;
+    }
+
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    List<iMyRestaurent.Models.MenuInput> menus = Session[iMyRestaurent.Shared.Constants.MenuPrefix + Model.Token] as List<iMyRestaurent.Models.MenuInput>;   
+}
+@section import {
+    @NoCache.Instance.Css(Url, "~/Content/biz-hours.css")
+    @NoCache.Instance.Css(Url, "~/Content/timepicker.css")
+    @NoCache.Instance.Css(Url, "~/Content/i-my-menu.css")
+    @NoCache.Instance.Css(Url, "~/Js/popup.css")
+    @NoCache.Instance.Css(Url, "~/Content/mobiscroll/mobiscroll.core-2.0.1.css")
+    @NoCache.Instance.Css(Url, "~/Content/menu-styles/style1/style.css")
+    @NoCache.Instance.Css(Url, "~/Content/menu-styles/style2/style.css")
+    @NoCache.Instance.Css(Url, "~/Content/menu-styles/style3/style.css")
+    @NoCache.Instance.Css(Url, "~/Content/i-my-menu-v2.css")
+    @NoCache.Instance.Css(Url, "~/Content/i-my-menu-v3.css")
+    @if (Utils.IsAndroid())
+    {
+        <text>
+        <link rel="stylesheet" type="text/css" href="@NoCache.Instance.Url(Url, "~/Content/mobiscroll/mobiscroll.android-ics-2.0.css")" />
+        </text>
+    }
+    else
+    {
+        <text>
+        <link rel="stylesheet" type="text/css" href="@NoCache.Instance.Url(Url, "~/Content/mobiscroll/mobiscroll.ios-2.0.css")" />
+        </text>
+    }
+}
+<div id="title">@ViewBag.Title</div>
+<div class="opacity-box center-box" style="width: 900px;">
+    @Html.Partial("MenuTypeHeader")
+    <div class="clearfix menu-containment -fl-ah" fla-step="10">
+        @if (menus != null)
+        {
+            for (int i = 0; i < menus.Count; i++)
+            {
+            @Html.Partial("MenuInput", menus[i])
+            }
+        }
+    </div>
+    <div id="holiday-select-panel" class="@((menus != null && menus.Count > 0) ? "clearfix" : "hidden")">
+        <div class="clearfix">
+            <!--<select id="type-selector">
+                <option value="0">Holiday</option>
+                <option value="1">Public holiday</option>
+                <option value="2">Special day</option>
+            </select>
+            -->
+            <button id="btn-holiday-setting">
+                Year Planner</button>
+            <span id="setting-desc">Year Planner is to set your restaurant status to CLOSED for Public Holidays or other Special dates, for the year ahead.</span>
+            <form id="frm-holiday-setting" action="/Holiday/HolidaySetting">
+            <input type="hidden" name="LocationIDForHoliday" id="location-holiday-setting" />
+            <input type="hidden" name="Token" value="@Model.Token" id="token-holiday-setting" />
+            <input type="hidden" name="LocationNameForHoliday" value="@Model.LocationName" id="location-name-holiday-setting" />
+            <input type="hidden" name="SummaryLocationID" value="@Model.SummaryLocationID" />
+            <input type="hidden" name="SummaryDate" value="@Model.SummaryDate" />
+            <input type="hidden" name="Mode" value="@Model.Mode" />
+            </form>
+            <button style="display: none;" type="button" id="type-selector" class="image-button">
+                Holiday</button>
+            <select id="year-selector" style="display: none;">
+                <option value="-1">Select year</option>
+                @for (int year = 2000; year < 3000; year++)
+                {
+                    <option value="@year">@year</option>
+                }
+            </select>
+            <select id="day-selector" style="display: none;">
+                <option value="-1">Select closed date to display</option>
+            </select>
+            <button type="button" class="image-button button-show-hide-holiday hidden">
+                <div class="hidden">
+                    0</div>
+            </button>
+        </div>
+    </div>
+</div>
+<button type="button" class="image-button button-add-menu-type center-box" style="margin-top: 15px;">
+</button>
+<!-- forms -->
+<form action="@Url.Action("AddMenu")" method="post" id="add-menu">
+<input type="hidden" name="Token" value="@Model.Token" />
+<input type="hidden" name="LocationID" value="@Model.LocationID" />
+<input type="hidden" name="LocationName" value="@Model.LocationName" />
+<input type="hidden" name="SummaryLocationID" value="@Model.SummaryLocationID" />
+<input type="hidden" name="SummaryDate" value="@Model.SummaryDate" />
+<input type="hidden" name="Mode" value="@Model.Mode" />
+<input type="hidden" name="LayoutZoomScale" value="@Model.LayoutZoomScale" />
+</form>
+<form action="@ViewBag.BackAction" method="post" id="back">
+<input type="hidden" name="SummaryDate" value="@Model.SummaryDate" />
+<input type="hidden" name="SummaryLocationID" value="@Model.SummaryLocationID" />
+<input type="hidden" name="LocationID" value="@Model.LocationID" />
+<input type="hidden" name="Mode" value="@Model.Mode" />
+<input type="hidden" name="LocationName" value="@Model.LocationName" />
+<input type="hidden" name="LayoutZoomScale" value="@Model.LayoutZoomScale" />
+</form>
+<form action="@Url.Action("Index", "Summary")" method="post" id="next">
+<input type="hidden" name="LocationID" value="@Model.LocationID" />
+<input type="hidden" name="Date" value="@Model.SummaryDate" />
+</form>
+@section footer {
+    <div class="clearfix">
+        <button type="button" class="image-button button-back left">
+        </button>
+        <button type="button" class="image-button button-done right">
+        </button>
+    </div>
+}
+@section script {
+    @NoCache.Instance.Javascript(Url, "~/Scripts/jquery.form.js")
+    @NoCache.Instance.Javascript(Url, "~/Scripts/jquery-ui-timepicker-addon-biz.js")
+    @NoCache.Instance.Javascript(Url, "~/Scripts/menu-input.js")
+    @NoCache.Instance.Javascript(Url, "~/Scripts/biz-hour.js")
+    @NoCache.Instance.Javascript(Url, "~/Scripts/holiday.js")
+    @NoCache.Instance.Javascript(Url, "~/Js/core.js")
+    @NoCache.Instance.Javascript(Url, "~/Scripts/i-my-menu.js")
+    @NoCache.Instance.Javascript(Url, "~/Scripts/i-my-menu-v3.js")
+    @NoCache.Instance.Javascript(Url, "~/Scripts/preview.js")
+    @NoCache.Instance.Javascript(Url, "~/Scripts/jlinq.js")
+    @NoCache.Instance.Javascript(Url, "~/Scripts/fullscreen-image-viewer.js")
+    @NoCache.Instance.Javascript(Url, "~/Scripts/fullscreen-menu-viewer.js")
+    @NoCache.Instance.Javascript(Url, "~/Scripts/jquery.meio.mask.js")
+    @NoCache.Instance.Javascript(Url, "~/Scripts/mobiscroll/mobiscroll.core-2.0.1.js")
+    @NoCache.Instance.Javascript(Url, "~/Scripts/mobiscroll/mobiscroll.datetime-2.0.1.js")
+    @if (Utils.IsAndroid())
+    {
+        <text>
+        @NoCache.Instance.Javascript(Url, "~/Scripts/mobiscroll/mobiscroll.android-ics-2.0.js")
+        </text>
+    }
+    else
+    {
+        <text>
+        @NoCache.Instance.Javascript(Url, "~/Scripts/mobiscroll/mobiscroll.ios-2.0.js")
+        </text>
+    }
+}

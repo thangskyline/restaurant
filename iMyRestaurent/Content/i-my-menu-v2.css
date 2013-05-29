@@ -1,0 +1,82 @@
+﻿xml-containment[currency="100000"] d-item-price:after, 
+xml-containment[currency="100000"] d-group-price:after, 
+xml-containment[currency="100000"] d-option-price:after,
+xml-containment[currency="100000"] d-ddl-option-price:after
+{
+	content: ' USD';
+}
+xml-containment[currency="100001"] d-item-price:after, 
+xml-containment[currency="100001"] d-group-price:after, 
+xml-containment[currency="100001"] d-option-price:after,
+xml-containment[currency="100001"] d-ddl-option-price:after
+{
+	content: ' VND';
+}
+xml-containment[currency="100002"] d-item-price:after, 
+xml-containment[currency="100002"] d-group-price:after, 
+xml-containment[currency="100002"] d-option-price:after,
+xml-containment[currency="100002"] d-ddl-option-price:after
+{
+	content: ' AUD';
+}
+xml-containment
+{
+	display: block;
+	height: 100%;
+	overflow: auto;
+	outline: 1px solid #eee;
+	padding: 0 10px 0 10px;
+}
+xml-containment d-line, xml-containment d-icon, xml-containment d-option-price
+{
+	display: inline-block;
+}
+xml-containment d-option-price
+{
+	margin-left: 5px;
+}
+xml-containment d-icon
+{
+	width: 18px;
+	height: 18px;
+	/*outline: 1px solid #ccc;*/
+	margin: 0 2px 0 2px;
+}
+xml-containment d-icon img
+{
+	width: 100%;
+	height: 100%;
+	display: block;
+}
+xml-containment d-input 
+{
+	width: 20px;
+	float: left;
+	padding-top: 10px;
+}
+xml-containment d-input-desc 
+{
+	margin-left: 20px;
+}
+xml-containment d-ddl-option-price 
+{
+	float: right;
+	width: 90px;
+	text-align: right;
+}
+xml-containment d-ddl-secondary-option-name 
+{
+	text-align: left;
+	margin-left: 300px;
+	margin-right: 90px;
+}
+xml-containment d-ddl-select 
+{
+	width: 300px;
+	
+	float: left;
+}
+xml-containment, d-menu, d-menu-header, d-restaurant-name, d-menu-type, d-menu-title, d-menu-name, d-primary-menu-name, d-secondary-menu-name, d-primary-menu-description, d-secondary-menu-description, d-section-list, d-section, d-primary-section-name, d-secondary-section-name, d-subsection-list, d-subsection, d-primary-subsection-name, d-secondary-subsection-name, d-item-list, d-item, d-item-price, d-primary-item-name, d-secondary-item-name, d-group-list, d-group, d-group-price, d-primary-group-name, d-secondary-group-name, d-option-list, d-option, d-primary-option-name, d-secondary-option-name, d-restaurant-address, d-input, d-input-desc, d-ddl-select, d-ddl-option-price, d-ddl-secondary-option-name,d-primary-section-description,d-secondary-section-description,d-primary-subsection-description,d-secondary-subsection-description,d-primary-item-description,d-secondary-item-description,d-primary-group-description,d-secondary-group-description,d-primary-option-description,d-secondary-option-description
+{
+	display: block;
+}

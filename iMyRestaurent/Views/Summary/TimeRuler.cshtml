@@ -1,0 +1,39 @@
+﻿@model iMyRestaurent.Models.TimeRulerModel
+<table id="@Model.ID">
+    @if (Model.Top)
+    {
+        <tr>
+            @foreach (var milestone in Model.Summary.Milestones)
+            {
+                <td colspan="@milestone.Block">
+                </td>
+                <td colspan="4">
+                    @*@milestone.Value.ToString("HH:mm")*@
+                </td>
+            }
+        </tr>
+    }
+    <tr class="ruler">
+        @for (int i = 0; i < Model.Summary.BlockNo + 1; i++)
+        {
+            DateTime time = Model.Summary.BoundaryStartTime.AddMinutes(i * 15);
+
+            var clazz = (i < Model.Summary.BlockNo) ? (time.Minute == 0 ? "hour" : "minute") : "";
+            <td class="@clazz">
+            </td>                
+        }
+    </tr>
+    @if (!Model.Top)
+    {
+        <tr>
+            @foreach (var milestone in Model.Summary.Milestones)
+            {
+                <td colspan="@milestone.Block">
+                </td>
+                <td colspan="4">
+                    @*@milestone.Value.ToString("HH:mm")*@
+                </td>
+            }
+        </tr>
+    }
+</table>

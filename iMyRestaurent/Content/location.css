@@ -1,0 +1,74 @@
+﻿#list-label
+{
+	margin-bottom: 20px;
+}
+.delete-button
+{
+	width: 22px;
+	height: 22px;
+	background: url("images/create-loc-trash-icon.png") no-repeat;
+	cursor: pointer;
+	margin-top: 10px;
+	margin-right: 40px;
+}
+.location-row
+{
+	height: 42px;
+	width: 860px;
+	border-bottom: 3px solid white;
+	text-align: left;
+}
+.location-list
+{
+	text-align: center;
+	width: 900px;
+	min-height: 100px;
+	overflow-y: auto;
+}
+.location-row:hover
+{
+	background: url("images/chart-bg.png") repeat;
+}
+.location-row span
+{
+	line-height: 42px;
+}
+.input-label
+{
+	height: 22px;
+	line-height: 22px;
+	white-space: nowrap;
+	margin-right: 10px;
+}
+#table
+{
+	width: 100%;
+	text-align: center;
+	padding-top: 30px;
+	padding-bottom: 10px;
+}
+#table thead tr td div
+{
+	font-weight: bold;
+	height: 16px;
+	line-height: 16px;
+	white-space: nowrap;
+	background: url("images/summary-breaky-header-small.png") repeat;
+	margin: 0 2px 0 2px;
+}
+#table tbody input[type=text]
+{
+	background-color: transparent;
+	border: none;
+	text-align: center;
+}
+#table tbody tr
+{
+	vertical-align: middle;
+	height: 40px;
+}
+
+#table tbody tr.even-row
+{
+	background-color: White;
+}
