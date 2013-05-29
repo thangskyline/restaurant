@@ -1,0 +1,174 @@
+﻿@model iMyRestaurent.Models.ReservationStaticModel
+@{
+    if (Model.Mode == iMyRestaurent.Shared.Mode.Create)
+    {
+        ViewBag.Title = "iMyRestaurant - Create A Reservation for " + Model.LocationName;
+    }
+    else
+    {
+        ViewBag.Title = "iMyRestaurant - Edit A Reservation for " + Model.LocationName;
+    }
+
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    // define ruler-length & unit-time-width
+    double rulerLength = 969;
+    double wUnit = (double)rulerLength / (60 * 24);
+
+    var format = System.Globalization.CultureInfo.CurrentCulture.DateTimeFormat;
+}
+@section import {
+    @NoCache.Instance.Css(Url, "~/Content/timepicker.css")
+    @NoCache.Instance.Css(Url, "~/Content/table-layout.css")
+    @NoCache.Instance.Css(Url, "~/Content/reservation.css")
+    @NoCache.Instance.Css(Url, "~/Content/report.css")
+    @NoCache.Instance.Css(Url, "~/Content/booking-detail.css")
+    @NoCache.Instance.Css(Url, "~/Content/mobiscroll/mobiscroll.core-2.0.1.css")
+    @if (Utils.IsAndroid())
+    {
+        <text>
+        @NoCache.Instance.Css(Url, "~/Content/mobiscroll/mobiscroll.android-ics-2.0.css")
+        </text>
+    }
+    else
+    {
+        <text>
+        @NoCache.Instance.Css(Url, "~/Content/mobiscroll/mobiscroll.ios-2.0.css")
+        </text>
+    }
+}
+@Html.Partial("Report")
+<div id="title">@ViewBag.Title</div>
+<div class="hidden" id="hidden-location-name">@Model.LocationName</div>
+<div id="form-containment" class="center-box">
+    <div class="clearfix">
+        <div class="input-div">
+            <div>
+                <span>Mobile phone number:</span>
+            </div>
+            <div>
+                <input type="text" name="PhoneNumber" id="txt-phone-number" value="@Model.PhoneNumber" />
+            </div>
+        </div>
+        <div class="input-div">
+            <div>
+                <span>Name of guest:</span>
+            </div>
+            <div style="position: relative; overflow: visible;">
+                <input type="text" name="GuestName" id="txt-guest-name" value="@Model.GuestName" autocomplete="off" />
+                <div class="suggest-list" style="display: none;">
+                    <ul>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="input-div">
+            <div>
+                <span>How many guests?</span>
+            </div>
+            <div>
+                <input type="text" name="GuestNo" id="txt-guest-no" value="@Model.GuestNo" />
+            </div>
+        </div>
+        <div class="right">
+            <div class="right" style="margin: 15px 2px 0 2px;">
+                <input type="button" class="image-button button-zoom-in" />
+            </div>
+            <div class="right" style="margin: 15px 2px 0 2px;">
+                <input type="button" class="image-button button-zoom-out" />
+            </div>
+        </div>
+    </div>
+    <div class="new-reservation clearfix hidden">
+        <button type="button" class="left image-button button-new-reservation">
+        </button>
+        <div style="margin-left: 190px;">
+            <text>the newly created reservation is now in editing mode, so you can change this guest's reservation by selecting another table OR change the date/time.
+If you are finished, just click "Back" to go to the summary page.</text>
+        </div>
+    </div>
+</div>
+<div class="center-box -fl-ah" id="layout-containment" style="margin-top: 10px;" fla-step="10">
+    <div id="layout-div">
+        @foreach (var table in Model.Tables)
+        {
+            var layoutCode = (!string.IsNullOrEmpty(table.LayoutCode) && Convert.ToInt32(table.LayoutCode) > 0) ? table.LayoutCode : "";
+            
+            <div tabindex="-1" class="table" id="@table.TableID" style="@table.Css.Table"@(layoutCode.Equals(Model.LayoutCode) ? " highlighted" : "")>
+                <div class="table-elements">
+                    <div class="layout-code" style="@table.Css.Layout">@layoutCode</div>
+                    <div class="number-seat" style="@table.Css.Number">
+                        <div style="@table.Css.NumberText">@table.NoOfChairs</div>
+                    </div>
+                </div>
+                <div class="hidden booking-id">
+                </div>
+            </div>
+        }
+    </div>
+</div>
+<div id="time-line-containment">
+    <div id="business-hour-display">
+    </div>
+    <div id="time-line-div" class="center-box clearfix">
+    </div>
+</div>
+@section footer {
+    <div class="clearfix" id="sitting-types">
+        <div class="left">
+            <input type="button" class="image-button button-back" />
+        </div>
+        <div class="left" id="date-label">
+            <span>Date:</span>
+        </div>
+        <div class="left">
+            <input type="button" class="image-button button-previous" id="previous-date" />
+        </div>
+        <div class="left">
+            <input type="text" readonly="readonly" id="input-date" value="@Model.InitialTime" />
+        </div>
+        <div class="left">
+            <input type="button" class="image-button button-next" id="next-date" />
+        </div>
+    </div>
+    <div class="hidden" id="hidden-values-store">
+        <div class="input-datetime">@Model.InitialTime</div>
+        <div class="location-id">@Model.LocationID</div>
+        <div class="mode">@Model.Mode</div>
+        <div class="booking-id">@Model.BookingID</div>
+        <div class="sitting-type">@((int)Model.SittingType)</div>
+        <div class="person-id">@Model.PersonID</div>
+        <div class="event-id">
+        </div>
+        <div class="is-kitchen-close">
+        </div>
+    </div>
+    <div class="suggest-mask" style="display: none;">
+    </div>
+    <form action="@Url.Action("Index", "Summary")" method="post" id="back">
+    <input type="hidden" name="LocationID" value="@Model.LocationID" />
+    <input type="hidden" name="Date" />
+    </form>
+}
+@section script {
+    @NoCache.Instance.Javascript(Url, "~/Scripts/jquery-ui-timepicker-addon-modified.js")
+    @NoCache.Instance.Javascript(Url, "~/Scripts/zoom.js")
+    @NoCache.Instance.Javascript(Url, "~/Scripts/report.js")
+    @NoCache.Instance.Javascript(Url, "~/Scripts/reservation.js")
+    @NoCache.Instance.Javascript(Url, "~/Scripts/jquery.meio.mask.js")
+    @NoCache.Instance.Javascript(Url, "~/Scripts/booking-detail.js")
+    @NoCache.Instance.Javascript(Url, "~/Scripts/mobiscroll/mobiscroll.core-2.0.1.js")
+    @NoCache.Instance.Javascript(Url, "~/Scripts/mobiscroll/mobiscroll.datetime-2.0.1.js")
+    @if (Utils.IsAndroid())
+    {
+        <text>
+        @NoCache.Instance.Javascript(Url, "~/Scripts/mobiscroll/mobiscroll.android-ics-2.0.js")
+        </text>
+    }
+    else
+    {
+        <text>
+        @NoCache.Instance.Javascript(Url, "~/Scripts/mobiscroll/mobiscroll.ios-2.0.js")
+        </text>
+    }
+}

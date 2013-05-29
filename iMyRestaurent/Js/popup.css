@@ -1,0 +1,307 @@
+﻿a {color: #00A0DC;outline-style: none;text-decoration: none;}
+.c {clear: both;height: 0;overflow: hidden;}
+.float_left,.fl,.fL,#fl {float:left}
+.box-gradien .content{padding-top:15px;background:none}
+/* classic popup */
+.classic-popup{font-family: tahoma; background: rgba(255,255,255, 0.24);border-radius: 5px;-moz-border-radius: 5px;padding:6px}
+.classic-popup-title{ background: none repeat scroll 0 0 #0088CC; color: #FFFFFF; font-size: 13px; font-weight: bold;}
+.classic-popup-title1{ background: none repeat scroll 0 0 #F2D5C7; color: #FFFFFF; font-size: 13px; font-weight: bold;}
+.classic-popup-title,.classic-popup-title .fl,.classic-popup-title1,.classic-popup-title1 .fl,a.classic-popup-close{padding: 3px 0px;}
+.classic-popup-title .fl{padding-left:20px;text-transform:uppercase;text-shadow:0 1px 0 #666666}
+.classic-popup-title1 .fl{padding-left:20px;text-transform:uppercase;text-shadow:0 1px 0 #666666}
+a.classic-popup-close{color: #FFFFFF;float:right;font-size:13px;padding:0 10px}
+a.classic-popup-close:hover{text-decoration:none;color:#4f2d00}
+.classic-popup-content{width:100%;background:#fff;color:#006997}
+.classic-popup-content1{width:100%;background:#F2D5C7;color:#006997}
+
+.box-gradien .content{padding-top:15px;background:none}
+
+.mTop10, #mTop10 {
+    margin-top: 10px;
+}
+
+.but_send, a.but_send, .but_send span {
+    background: url("../Imgs/buttton.jpg") no-repeat scroll left center transparent;
+    color: #FFFFFF;
+    cursor: pointer;
+    display: block;
+    float: left;
+    font-size: 11px;
+    font-weight: bold;
+    overflow: hidden;
+    text-align: center;
+    width:63px;
+}
+
+.but_cancel, a.but_cancel, .but_cancel span{
+    background: url("../Imgs/but_huybo.jpg") no-repeat scroll left center transparent;
+    color: #666666;
+    cursor: pointer;
+    display: block;
+    float: left;
+    font-size: 11px;
+    font-weight: bold;
+    overflow: hidden;
+    text-align: center;
+    width:60px;
+    height: 32px;
+    line-height: 32px;
+}
+
+.but_send span span {
+    height: 32px;
+    line-height: 32px;
+}
+
+a.but_send:hover {
+    text-decoration: none;
+}
+
+.hidden {
+    display: none;
+}
+
+.cartNewForm {
+    background: none repeat scroll 0 0 transparent;
+}
+
+.cartNewForm table {
+    color: #3C3C3C;
+}
+.cartNewForm table input {
+    border: 1px solid #A6A6A6;
+    color: #000000;
+    font-size: 12px;
+    height: 17px;
+    padding: 2px 7px;
+    width: 210px;
+}
+.cartNewForm table select {
+    padding: 4px;
+    width: 225px;
+}
+
+.text_tit 
+{
+    background: url("../Imgs/icon_user.png") no-repeat scroll 8px 0 transparent;
+    color: #0093D0;
+    font-size: 18px;
+    font-weight: bold;
+    height: 26px;
+    line-height: 26px;
+    padding-left: 35px;
+}
+
+.bold, #bold {
+    font-weight: bold;
+}
+
+.mLeft10, #mLeft10, .marginLeft10 {
+    margin-left: 10px;
+}
+
+.infoNumber .text_tit {
+    background: url("../Imgs/icon_cart.png") no-repeat scroll 0 0 transparent;
+    padding-left: 45px;
+}
+.infoCart .text_tit {
+    background: url("../Imgs/oto.png") no-repeat scroll 0 0 transparent;
+    padding-left: 45px;
+}
+.infoTotal .text_tit {
+    background: url("../Imgs/icon_arrow.png") no-repeat scroll 4px 0 transparent;
+    padding-left: 45px;
+}
+.infoNumber {
+    background: url("../Imgs/bg.png") repeat-x scroll 0 0 transparent;
+    height: 80px;
+    padding: 10px 0 0 14px;
+}
+.infoCart, .infoTotal {
+    padding: 0 14px;
+}
+.infoTotal #bgAllPrice {
+    color: #EA0000;
+    font-size: 24px;
+}
+
+.f11, #f11 {
+    font-size: 11px;
+}
+
+.reg_form{
+    color: #006997;
+    font-size:12px;
+    line-height: 1.5;
+    vertical-align:bottom;
+}
+.reg_form .title {
+    background: url("../Imgs/bgReg.jpg") repeat-x scroll left top #F0FBFF;
+    color: #006B8D;
+    font-size: 14px;
+    font-weight: bold;
+    height: 20px;
+    line-height: 20px;
+    padding: 8px 18px 0;
+}
+
+.reg_form input, .reg_form select
+{
+    border: 1px solid #ABD5E3;
+    border-radius: 2px 2px 2px 2px;
+    color: #666666;
+    margin:1px 5px 1px 0;
+    height: 16px;
+    width: 198px;
+    padding: 3px;
+}
+.reg_form select {
+    height: 23px;
+    padding: 3px 1px 1px;
+    width: 204px;
+}
+
+.reg_form td {
+    vertical-align:middle;
+}
+
+.reg_oke {
+    color: #006997;
+    font-size: 11px;
+    vertical-align: top;
+}
+
+.reg_form a {
+    color: #4C80D7;
+    font-size: 11px;
+    font-weight: normal;
+}
+
+.mTop5, #mTop5 {
+    margin-top: 5px;
+}
+
+.classic-popup .label {
+    font-size: 11px;
+    font-weight: bold;
+}
+.classic-popup .input-txt {
+    border: 1px solid #ABD5E3;
+    border-radius: 3px 3px 3px 3px;
+    height: 18px;
+    margin: 5px 0;
+    padding: 3px;
+    width: 245px;
+    font-size:11px;
+    color:#666666;
+    margin-right:5px;
+}
+
+.backtotop {
+    bottom: 10px;
+    position: fixed;
+    right: 10px;
+    z-index: 10;
+}
+
+.backtotop span {
+    background: url("http://www.mjgroup.com.vn/images_v2/circle.png") no-repeat scroll 0 -140px transparent;
+    cursor: pointer;
+    display: inline-block;
+    height: 50px;
+    width: 50px;
+}
+
+.select-city {
+    float: left;
+    margin-top: 13px;
+    position: relative;
+    width: 160px;
+}
+.select-city em {
+    color: #FFFFFF;
+    display: block;
+    font-size: 13px;
+    padding-left: 17px;
+}
+
+.select-city h3 {
+    color: #FFFFFF;
+    float: left;
+    font-size: 18px;
+    margin-left: 0;
+    margin-top: 8px;
+    padding-left: 18px;
+}
+
+.select-city .arrow {
+    background: url("http://www.mjgroup.com.vn/images_v2/circle.png") no-repeat scroll 0 -23px transparent;
+    float: right;
+    height: 17px;
+    margin-right: 12px;
+    margin-top: 9px;
+    position: relative;
+    width: 18px;
+    z-index: 11;
+}
+.select-city h2 {
+    color: #FFFFFF;
+    float: left;
+    font-size: 20px;
+    margin: 10px 0 0 17px;
+}
+
+.popup-select {
+    background: url("http://www.mjgroup.com.vn/images_v2/bg_ddl.png") repeat scroll 0 0 transparent;
+    border: 1px solid #9C928D;
+    border-radius: 10px 10px 10px 10px;
+    left: 5px;
+    padding: 0;
+    position: absolute;
+    width: 148px;
+    z-index: 11;
+}
+.popup-select a:hover {
+    background: url("http://www.mjgroup.com.vn/images_v2/bg_popup_hov.png") repeat scroll 0 0 transparent;
+}
+.select-city h3 {
+    color: #FFFFFF;
+    float: left;
+    font-size: 18px;
+    margin-left: 0;
+    margin-top: 8px;
+    padding-left: 17px;
+}
+
+.select-box span, .select-box a {
+    color: #FFFFFF;
+    display: inline-block;
+    font-size: 18px;
+    line-height: 18px;
+}
+.select-box a {
+    clear: left;
+    display: block;
+    padding: 4px 0 4px 11px;
+}
+.popup-select span.separation {
+    background: url("http://www.mjgroup.com.vn/images_v2/city-separation.png") no-repeat scroll 0 0 transparent;
+    float: left;
+    height: 2px;
+    width: 180px;
+}
+.select-box p {
+    float: left;
+    width: 180px;
+}
+.select-box {
+    margin-top: 3px;
+    overflow: hidden;
+    padding: 3px 0;
+}
+
+.button_No
+{
+    background-color: rgba(243, 225, 147, 0.5);
+    height:30px;
+}

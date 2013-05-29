@@ -1,0 +1,132 @@
+@model iMyRestaurent.Models.LoginModel
+@section import {
+    @NoCache.Instance.Css(Url, "~/Content/account.css")
+}
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "iMyRestaurant - Login";
+}
+<div class="landing-container">
+    <div class="image-left">
+    </div>
+    <div class="image-right">
+    </div>
+    <div id="top-space">
+    </div>
+    <div class="logo">
+    </div>
+    <div id="version">
+        Version 1.3.83</div>
+    <div id="powered-by">
+        <span>Powered by </span><span class="vendor-name">iMyVenue applications</span>
+    </div>
+    <div id="description">
+        A major step forward in managing your restaurant and getting customers<br />
+        to make table reservations from Smartphone devices or your website.
+    </div>
+    <form method="post" id="login" action="@Url.Action("Login", "Account")" autocomplete="off">
+    <div class="opacity-box center-box clearfix" id="form">
+        <div class="center-box" id="table-form">
+            <div id="error" class="hidden">@ViewBag.ErrorMessage</div>
+            <div class="clearfix">
+                <div class="left field-title">
+                    Restaurant ID</div>
+                <div class="left field-input">@Html.TextBoxFor(x => x.RestaurantID)</div>
+            </div>
+            <div class="clearfix">
+                <div class="left field-title">
+                    User (email)</div>
+                <div class="left field-input">@Html.TextBoxFor(x => x.UserName)</div>
+            </div>
+            <div class="clearfix">
+                <div class="left field-title">
+                    Password</div>
+                <div class="left field-input">@Html.PasswordFor(x => x.Password, new { value = (Model == null ? "" : Model.Password) })</div>
+            </div>
+            <div class="clearfix">
+                <div class="right field-input">
+                    @Html.CheckBoxFor(x => x.Remember)
+                    <span>Keep me logged in on this device</span>
+                </div>
+            </div>
+            <table width="330px" cellpadding="0" cellspacing="0" class="center-box" id="table-button">
+                <tr>
+                    <td width="110" valign="top">
+                        <a class="image-button button-register" href="@Url.Action("Register")" ></a>
+                    </td>
+                    <td width="135" valign="bottom">
+                        <input type="button" class="image-button button-forgot" />
+                    </td>
+                    <td valign="bottom">
+                        <input type="submit" value="" class="image-button button-login" name="Submit" />
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    </form>
+    <form action="@Url.Action("Forgot", "Account")" id="forgot" method="post">
+    <input type="hidden" name="RestaurantID" />
+    <input type="hidden" name="UserName" />
+    </form>
+</div>
+@section script {
+    <script language="javascript" type="text/javascript">
+        //document.getElementById("RestaurantID").focus();
+        $(document).ready(function () {
+            var message = $("#error").text();
+
+            if (message.length > 0) {
+                MessageBox.show({
+                    message: [message],
+                    buttons: {
+                        ok: function () {
+                        }
+                    }
+                });
+            }
+        });
+
+        $(function () {
+            $(".button-forgot").click(function () {
+                $("form#forgot input[name='RestaurantID']").val($.trim($("form#login input[name='RestaurantID']").val()));
+                $("form#forgot input[name='UserName']").val($.trim($("form#login input[name='UserName']").val()));
+
+                $("form#forgot").submit();
+
+                return false;
+            });
+
+            $(".button-login").click(function () {
+                var isEmpty = false;
+
+                isEmpty = ($.trim($("form#login input[name='RestaurantID']").val()).length === 0) ||
+                    ($.trim($("form#login input[name='RestaurantID']").val()).length === 0) ||
+                    ($.trim($("form#login input[name='Password']").val()).length === 0);
+
+                if (isEmpty) {
+                    MessageBox.show({
+                        message: ["Your login was not successful! Please enter the correct login ID, Username or Password and try again!"],
+                        buttons: {
+                            ok: null
+                        }
+                    });
+
+                    return false;
+                } else {
+                    return true;
+                }
+            });
+        });
+
+        $(document).ready(function () {
+            $("form#login input[name='RestaurantID']").focus();
+        });
+
+        function RedirectToForgot() {
+            var restaurantID = $.trim($("#RestaurantID").val());
+            var userName = $.trim($("#UserName").val());
+            window.location = 'Forgot?RestaurantID=' + restaurantID + '&UserName=' + userName;
+        }
+    </script>
+}

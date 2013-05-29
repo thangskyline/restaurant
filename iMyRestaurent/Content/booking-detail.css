@@ -1,0 +1,209 @@
+﻿#simple-reservation div[role="buttons"]
+{
+	display: block;
+	margin-right: 10px;
+}
+#simple-reservation .bb
+{
+	width: 84px;
+	height: 34px;
+	font-weight: bold;
+	color: #933;
+	float: right;
+	background-color: #e5af97;
+	-webkit-border-radius: 8px;
+	-moz-border-radius: 8px;
+	border-radius: 8px;
+}
+#simple-reservation .bb:hover 
+{
+	background-color: #cc9999;
+}
+#simple-reservation .bb:active 
+{
+	background-color: #996666;
+}
+.detail-dialog
+{
+	background-color: rgba(255,255,255, 0.24);
+	-webkit-border-radius: 12px;
+	-moz-border-radius: 12px;
+	border-radius: 12px;
+	width: 850px;
+	padding: 5px;
+}
+.detail-dialog div[role="body"]
+{
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+	border-radius: 10px;
+	background-color: #f2d5c7;
+}
+.detail-dialog div[role="header"]
+{
+	font-size: 18px;
+	font-weight: bold;
+	text-align: center;
+}
+button.dialog-close
+{
+	background-image: url(images/details-close-btn.png);
+	height: 21px;
+	width: 21px;
+	float: right;
+}
+.detail-dialog div[role="detail-info"]
+{
+	padding: 20px;
+}
+.detail-dialog div[role="detail-info"] > div
+{
+	width: 49%;
+}
+#left-panel
+{
+	float: left;
+}
+#right-panel
+{
+	float: right;
+}
+.detail-dialog div[role="detail-info"] .label
+{
+	font-weight: bold;
+	line-height: 20px;
+	float: left;
+	width: 160px;
+	padding-top: 5px;
+}
+.detail-dialog div[role="detail-info"] .label:after
+{
+	content: ':';
+}
+.detail-dialog div[role="detail-info"] .value
+{
+	margin-left: 165px;
+	width: auto;
+	line-height: 20px;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	word-break: break-all;
+}
+.detail-dialog div[role="detail-info"] input[type="checkbox"]
+{
+	height: 20px;
+}
+#booking-detail-dialog div[detail-info="info"] textarea
+{
+	/*height: 65px;*/
+}
+.detail-dialog div[role="detail-info"] .time-prefix
+{
+	float: left;
+	line-height: 20px;
+	width: 60px;
+	height: 26px;
+}
+.detail-dialog input#booking-start-time, .detail-dialog input#booking-end-time
+{
+	width: 60px;
+}
+.iMyTable-reservation
+{
+	background-repeat: no-repeat;
+	width: 20px;
+	height: 20px;
+}
+.iMyTable-reservation.on
+{
+	background-image: url(images/imytable-icon-on.png);
+}
+.iMyTable-reservation.off
+{
+	background-image: url(images/imytable-icon-off.png);
+}
+.detail-dialog div[role="buttons"]
+{
+	display: table;
+	margin: 0 auto 0 auto;
+	padding-bottom: 10px;
+}
+.detail-dialog div[role="buttons"] .image-button
+{
+	margin-left: 10px;
+	margin-right: 10px;
+	float: left;
+}
+.detail-dialog #sitting-time-containment > div 
+{
+	float: left;
+	padding-right: 10px;
+}
+#booking-history-dialog div[role="history"]
+{
+	height: 300px;
+	overflow-x: hidden;
+	overflow-y: auto;
+}
+#booking-history-dialog table 
+{
+	width: 100%;
+	font-size: 13px;
+}
+#booking-history-dialog table thead td
+{
+	background-color: #933;
+	color: White;
+	vertical-align: middle;
+}
+#booking-history-dialog table td
+{
+	padding-bottom: 2px;
+	padding-top: 2px;
+	text-align: center;
+}
+#booking-history-dialog table tbody td
+{
+	vertical-align: top;
+	word-break: break-all;
+}
+#booking-history-dialog table tbody td.no-wrap
+{
+	white-space: nowrap;
+}
+#booking-history-dialog .highlight-row td
+{
+	background-color: #F7E4DB;
+}
+.detail-dialog .star
+{
+	height: 20px;
+	width: 20px;
+	background-position: center center;
+	background-repeat: no-repeat;
+	float: left;
+}
+#booking-detail-dialog .star 
+{
+	cursor: pointer;
+}
+.detail-dialog .star.on
+{
+	background-image: url(images/starOn.png);
+}
+.detail-dialog .star.off
+{
+	background-image: url(images/starOff.png);
+}
+.detail-dialog .star.unselected
+{
+	background-image: url(images/starOff.png) !important;
+}
+.detail-dialog .star.selected
+{
+	background-image: url(images/starOn.png) !important;
+}
+.detail-dialog .origin 
+{
+	display: none;
+}

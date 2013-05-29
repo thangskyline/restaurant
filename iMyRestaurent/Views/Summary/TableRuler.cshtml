@@ -1,0 +1,28 @@
+﻿@model iMyRestaurent.Models.TableRulerModel
+<table id="@Model.ID">
+    <tbody>
+        <tr id="tabler-ruler-header">
+            <td>
+                <span>Table#</span>
+            </td>
+            <td>
+                <span>Chair#</span>
+            </td>
+        </tr>
+        @if (Model != null)
+        {
+            for (int i = 0; i < Model.Tables.Length; i++)
+            {
+            <tr class="@(i % 2 == 1 ? "table-ruler-info" : "table-ruler-info even-row")" table-id="@Model.Tables[i].TableID">
+                <td>
+                    <span class="layout-code">@Model.Tables[i].LayoutCode</span>
+                </td>
+                <td>
+                    <span class="table-size">@Model.Tables[i].NoOfChairs</span>
+                </td>
+            </tr>
+
+            }
+        }
+    </tbody>
+</table>

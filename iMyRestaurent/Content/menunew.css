@@ -1,0 +1,609 @@
+
+
+.button-back
+{
+    margin-top: 10px;
+}
+/* --- specific textarea height --- */
+#txt-menu-desc
+{
+    height: 115px;
+}
+#txt-sec-desc, #txt-subsec-desc
+{
+    height: 140px;
+}
+#txt-item-desc, #txt-option-desc
+{
+    height: 97px;
+}
+#txt-group-desc
+{
+    height: 45px;
+}
+
+/* --- editor-common --- */
+#editor-panel button[disabled]
+{
+    opacity: 0.3 !important;
+}
+#editor-panel .price-div
+{
+    float: left;
+    width: 102px;
+}
+#editor-panel .currency-unit
+{
+    margin-left: 110px;
+    line-height: 22px;
+}
+#editor-panel select
+{
+    height: 22px;
+    -webkit-appearance: none;
+    appearance: none;
+    -moz-appearance: none;
+    -ms-appearance: none;
+    padding: 2px 20px 2px 0;
+    background: url(images/down-arrow.png) no-repeat White;
+    background-position: center right;
+    background-size: 18px 18px;
+}
+#editor-panel input[type="text"], #editor-panel textarea, #editor-panel select
+{
+    font-size: 11px;
+    border: 1px solid #999;
+}
+#editor-panel input[type="text"]
+{
+    height: 20px;
+    padding-left: 2px;
+}
+#editor-panel textarea
+{
+    width: 153px;
+}
+#editor-panel .small-droplist
+{
+    margin-top: 3px;
+    width: 105px;
+}
+#editor-panel .small-textbox
+{
+    width: 101px;
+}
+#editor-panel .order-move-up
+{
+    margin-top: 95px;
+    margin-bottom: 30px;
+    background-image: url(images/MenuEditor/up.png);
+    width: 10px;
+    height: 14px;
+}
+#editor-panel .order-move-down
+{
+    background-image: url(images/MenuEditor/down.png);
+    width: 10px;
+    height: 14px;
+}
+#editor-panel .preview-div
+{
+    height: 65px;
+    padding-bottom: 5px;
+}
+#editor-panel .client-preview-area
+{
+    background: #F7EFE8;
+    border: #FECBA4 1px solid;
+    width: 100px;
+    height: 65px;
+    margin-right: 20px;
+    overflow: hidden;
+}
+#editor-panel .del-img-button
+{
+    float: right;
+    background-image: url(images/MenuEditor/del-icon.png);
+    width: 16px;
+    height: 20px;
+}
+#editor-panel .acc-label
+{
+    font-weight: bold;
+    font-size: 11px;
+    display: inline-block;
+    width: 86px;
+    line-height: 15px;
+}
+#editor-panel .acc-label.small
+{
+    width: 50px;
+}
+#editor-panel .list
+{
+    background-color: #F8D1B3;
+    border: #FECBA4 1px solid;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    margin: 5px 0 5px 0;
+}
+#editor-panel .list ul
+{
+    height: 225px;
+    overflow-x: hidden;
+    overflow-y: auto;
+    margin: 5px;
+}
+#editor-panel .list ul li
+{
+    list-style: none;
+}
+#editor-panel .list ul li:hover
+{
+    background-color:white;
+}
+#editor-panel .list ul li.liselected
+{
+    background-color:#F78731;
+}
+#editor-panel .list ul li a
+{
+    display: block;
+    padding: 0px 5px 0px 5px;
+    color: #933;
+    text-decoration: none;
+    cursor: pointer;
+    height: 22px;
+    float: left;
+    width: 81px;
+    overflow: hidden;
+    line-height: 14px;
+}
+#editor-panel .list ul li a span
+{
+    float:left;
+    margin-top:5px
+}
+#editor-panel .list ul li a:hover
+{
+    background: white;
+}
+#editor-panel .list ul li a.selected
+{
+    font-weight: bold;
+    background: #F78731;
+}
+#editor-panel .search-for-image
+{
+    background-image: url(images/MenuEditor/searchimage.png);
+    width: 129px;
+    height: 28px;
+    padding-bottom: 10px;
+}
+#editor-panel .search-for-icon
+{
+    background-image: url(images/MenuEditor/searchicon.png);
+    width: 129px;
+    height: 28px;
+    padding-bottom: 10px;
+}
+#editor-panel input[type="file"]
+{
+    display: block;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    cursor: default;
+}
+
+/* --- accordion-structure --- */
+.accordion
+{
+    overflow: hidden;
+    height: auto;
+    background-color: rgba(255, 255, 255, 0.5);
+}
+.accordion .acc-body
+{
+    font-size: 10px;
+    padding: 10px;
+    height: 370px;
+}
+.accordion .acc-body form
+{    
+    height: 267px;
+}
+.accordion .acc-body .col1
+{
+    float: left;
+    width: 15px;
+    height: 147px;
+}
+.accordion .acc-body .col2
+{
+    width: 140px;
+    float: left;
+    padding-right: 10px;
+}
+.accordion .acc-body .col3
+{
+    width: 160px;
+    float: left;
+    padding-right: 5px;
+}
+.accordion .acc-body .col3 > div
+{
+}
+.accordion .acc-body .col3 input[type="text"]
+{
+    margin-bottom: 5px;
+    margin-top: 5px;
+}
+.accordion .acc-body .col3 input[type="checkbox"]
+{
+    margin-top: 5px;
+}
+.accordion .acc-body .col3 textarea
+{
+    margin-bottom: 5px;
+    margin-top: 5px;
+}
+.accordion .acc-body .col4
+{
+    margin-left: 335px;
+    padding-top: 4px;
+}
+.accordion .acc-body .col4 > div
+{
+    margin-bottom: 5px;
+}
+.accordion .acc-body .col4 select
+{
+    width: 102px;
+}
+.accordion .acc-body .button-control
+{
+    margin-top: 113px;
+}
+.accordion .acc-header
+{
+    background-image: url(images/MenuEditor/dot.png);
+    background-repeat: repeat-x;
+    background-position: center;
+    background-color: #FAD4B2;
+    padding-bottom: 5px;
+    cursor: pointer;
+}
+.accordion .acc-header .accordion-name:hover
+{
+    color: Black !important;
+}
+.accordion .acc-header .selected
+{
+    color: #3D7489 !important;
+}
+.accordion .acc-header-content
+{
+    margin: 0 auto 0 auto;
+    height: 25px;
+    width: auto;
+    vertical-align: text-bottom;
+    background: #FAD4B2;
+    background-image: url(images/MenuEditor/dot.png);
+    background-repeat: repeat-x;
+    background-position: center;
+}
+.accordion .acc-header-content .accordion-name
+{
+    font-weight: bold;
+    line-height: 27px;
+    text-align: center;
+    width: 80px;
+    float: left;
+    font-size: 13px;
+    color: #933;
+    outline: none;
+    margin-left:15px;
+    margin-right:15px;
+    width:auto;
+}
+.accordion.show .acc-header-content .accordion-name
+{
+    color: #3D7489;
+}
+.accordion.hide .acc-header-content .accordion-name
+{
+    color: #933;
+}
+.accordion .acc-header-content .accordion-name span
+{
+    background-color: #FAD4B2;
+    width: 30px;
+}
+.accordion .acc-header-content .buttons
+{
+    width: 90px;
+    margin-left: 100px;
+}
+.accordion .acc-header-content .buttons .image-button
+{
+    width: 22px;
+    height: 22px;
+    padding-left: 2px;
+    display: inline-block;
+    background-position: center bottom;
+}
+.accordion .acc-header-content .add-icon
+{
+    background-image: url(images/MenuEditor/add-icon.png);
+}
+.accordion .acc-header-content .sav-icon
+{
+    background-image: url(images/MenuEditor/save-btn.png);
+}
+.accordion .acc-body .del-icon
+{
+    background-image: url(images/MenuEditor/del.png);
+    width:20px;
+    height:22px;
+    margin-left: 91px;
+}
+
+.accordion .acc-body #menu-type-list
+{
+    border: 1px solid #999;
+    height: 60px;
+    overflow-x: hidden;
+    overflow-y: auto;
+    background: white;
+    padding-bottom: 0;
+}
+.accordion .acc-body #menu-type-list .line
+{
+    height: 20px;
+}
+.accordion .acc-body #menu-type-list .line:hover
+{
+    background-color: #eee;
+}
+.accordion .acc-body #menu-type-list .line .checkbox
+{
+    float: right;
+    width: 20px;
+    margin-top: 4px;
+}
+.accordion .acc-body #menu-type-list .line .menu-type-name
+{
+    margin-left: 3px;
+    line-height: 20px;
+    margin-right: 20px;
+}
+
+/* ------------ */
+#menu-editor
+{
+    margin: 10px auto 10px auto;
+    font-family: Tahoma, Geneva, sans-serif;
+    min-width: 1000px;
+    max-width: 1500px;
+}
+#editor-panel
+{
+    width: 490px;
+    float: left;
+}
+#preview-panel
+{
+    margin-left: 500px;
+}
+.header
+{
+    height: 40px;
+    margin-bottom: 8px;
+}
+.header .title
+{
+    color: #973C2A;
+    font-size: 21px;
+    font-weight: bold;
+    padding-top: 10px;
+}
+.header .titleleft
+{
+    display: inline;
+    float: left;
+}
+
+.header .settings
+{
+    float: right;
+    display: inline;
+    vertical-align: top;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+#editor-panel .header
+{
+    margin-left: 10px;
+    padding-left: 50px;
+    background-image: url(images/MenuEditor/logo.png);
+    background-repeat: no-repeat;
+    background-position: left center;
+}
+#editor-panel .body
+{
+    background-color: #FAD4B2;
+    padding-top: 10px;
+    padding-bottom: 20px;
+}
+#preview-panel .body
+{
+    height: 594px;
+}
+#gerenal-data
+{
+    padding: 5px;
+    font-size: 10px;
+}
+.dropdown-div
+{
+    float: left;
+    font-weight: bold;
+    font-size: 11px;
+    color: #933;
+    width: 100px;
+    padding-right: 5px;
+}
+.dropdown-div > div
+{
+    padding-bottom: 10px;
+}
+#gerenal-data #language-data
+{
+    padding-top: 15px;
+    float: right;
+}
+#gerenal-data #language-data #lang-div
+{
+    width: 75px;
+    float: left;
+}
+#gerenal-data #language-data #lang-div > div
+{
+    padding-bottom: 2px;
+}
+#gerenal-data #language-data #lang-div input
+{
+    margin-right: 5px;
+}
+#gerenal-data #language-data #auto-trans-div
+{
+    width: 75px;
+    height: 24px;
+    float: left;
+    padding-top: 5px;
+}
+
+#gerenal-data #language-data #auto-trans-div input
+{
+    width: 15px;
+    height: 24px;
+    display: block;
+    float: left;
+}
+#gerenal-data #language-data #auto-trans-div span
+{
+    margin-left: 20px;
+    display: block;
+}
+#summary-selection
+{
+    background-color: #FAD4B2;
+    padding: 5px;
+    font-size: 10px;
+}
+#summary-selection .col
+{
+    float: left;
+    width: 160px;
+}
+#summary-selection .col .label
+{
+    float: left;
+    width: 60px;
+    font-weight: bold;
+}
+#summary-selection .col .label:after
+{
+    content: ':';
+}
+#summary-selection .col .value
+{
+    margin-left: 65px;
+    margin-right: 10px;
+    overflow: hidden;
+    white-space: nowrap;
+}
+.preview-show-hide-lang-desc
+{
+    margin-top: 7px;
+    float: right;
+    font-size: 10px;
+    font-weight: normal;
+}
+.preview-show-hide-lang-desc span
+{
+    margin-left: 5px;
+}
+#summary-selection .col .clearfix
+{
+    padding-bottom: 10px;
+}
+#setting-dialog
+{
+    width: 800px;
+}
+#setting-dialog .title
+{
+    float: left;
+    margin-left: 150px;
+    font-weight: bold;
+    padding-top: 10px;
+}
+#setting-dialog .header-setting
+{
+    height: 35px;
+}
+#table-setting
+{
+    border: 0 !important;
+    border-spacing: 0px;
+    margin-left: 10px;
+    width: 97%;
+}
+#table-setting td
+{
+    white-space: nowrap;
+    padding-left: 10px;
+}
+#table-setting .location-name
+{
+    font-weight: bold;
+}
+#table-setting tr
+{
+    height: 30px;
+}
+#table-setting .header
+{
+    background-color: #9a3334;
+    color: White;
+    font-weight: bold;
+}
+#table-setting .first
+{
+    background-color: #c3c3c3;
+}
+#button-save
+{
+    float: right;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-right: 10px;
+}
+.btn-back-footer
+{
+    width: 490px;
+}
+.mobile-mask
+{
+    width: 100%;
+    height: 100%;
+}
+.button-nav
+{
+    margin-left:5px;
+    }
